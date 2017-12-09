@@ -19,9 +19,9 @@
 		<a class="arrow_left" href="#"></a> <a class="arrow_right" href="#"></a>
 		<div class="swiper-container">
 			<div class="swiper-wrapper">
-				<c:forEach var="photo" items="${photos.photo }">
+				<c:forEach var="photo" items="${photoList }">
 					<div class="swiper-slide">
-						<img src="${ctx }/images/${photo.photo }" alt="셰어하우스 이미지">
+						<img src="/images/${photo.photo }" alt="셰어하우스 이미지">
 					</div>
 				</c:forEach>
 			</div>
@@ -196,7 +196,9 @@
 						}
 					});
 		</script>
-		<a href="${ctx}/questionCreate.jsp">하우스 방문 문의</a>
+		<a
+			href="${ctx}/question/registQuestion.do?shareHouseId=${shareHouse.shareHouseId }">하우스
+			방문 문의</a>
 	</aside>
 	</main>
 	<%@ include file="/views/layout/footer.jsp"%>

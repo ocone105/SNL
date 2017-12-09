@@ -10,7 +10,7 @@ public interface ReviewMapper {
 	int create(Review review);
 
 	List<Review> retriveAll(int shareHouseId);
-
+	
 	List<Review> retrieveByMemberId(String memberId);
 
 	Review retrive(int retriveId);
@@ -24,9 +24,9 @@ public interface ReviewMapper {
 	int deleteByShareHouse(int shareHouseId);
 
 	int reviewReport(Map<String, Object> map);
-
+	
 	List<Integer> countReports(int reviewId);
-
+	
 	int deleteReportedReviews(int reviewId);
 
 }

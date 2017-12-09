@@ -30,20 +30,26 @@ public class QuestionController {
 	private ShareHouseService shareHouseService;
 
 	@RequestMapping("/question/registQuestion.do")
-	public String registerQuestion() {
-		return "redirect:/views/questionCreate.jsp";
+	public String registerQuestion(Model model, String shareHouseId) {
+
+		int id = Integer.parseInt(shareHouseId);
+		ShareHouse shareHouse = shareHouseService.find(id);
+
+		model.addAttribute("shareHouse", shareHouse);
+		return "/views/questionCreate.jsp";
 	}
 
 	// 문의 등록
 	@RequestMapping(value = "/question/registQuestion.do", method = RequestMethod.POST)
-	public String registerQuestion(int shareHouseId, String schedule, String phoneNumber, String content,
+	public String registerQuestion(String shareHouseId, String schedule, String phoneNumber, String content,
 			HttpSession session) {
 		String memberId = (String) session.getAttribute("memberId");
+		int id = Integer.parseInt(shareHouseId);
 		Member member = memberService.find(memberId);
 		if (member.getMemberTypeId() == 1) {
 			Question question = new Question();
 			question.setWriterId(memberId);
-			question.setShareHouseId(shareHouseId);
+			question.setShareHouseId(id);
 			question.setSchedule(schedule);
 			question.setPhoneNumber(phoneNumber);
 			question.setQuestionContent(content);
@@ -86,18 +92,19 @@ public class QuestionController {
 			// 사업자일 경우
 			List<ShareHouse> shareHouses = shareHouseService.findByMemberId(memberId);
 			List<Question> questionList = null;
-			try {
-				for (int i = 0; i < shareHouses.size(); i++) {
-					questionList = service.findByShareHouseId(shareHouses.get(0).getShareHouseId());
-				}
-				Paging paging = new Paging();
-				paging.setPageNo(1);
-				paging.setPageSize(10);
-				paging.setTotalCount(questionList.size());
-			} catch (Exception e) {
-				e.printStackTrace();
-				return "/views/questionList.jsp";
+			// try {
+			for (int i = 1; i < shareHouses.size(); i++) {
+				questionList = service.findByShareHouseId(shareHouses.get(i).getShareHouseId());
+				System.out.println(questionList);
 			}
+			Paging paging = new Paging();
+			paging.setPageNo(1);
+			paging.setPageSize(10);
+			paging.setTotalCount(questionList.size());
+			// } catch (Exception e) {
+			// e.printStackTrace();
+			// return "/views/questionList.jsp";
+			// }
 			model.addAttribute("qeustionList", questionList);
 			return "/views/questionList.jsp";
 		} else {

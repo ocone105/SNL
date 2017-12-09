@@ -22,9 +22,9 @@
 				id="month"> <input type="hidden" id="selectedDay"> <input
 				type="hidden" id="schedule" name="schedule"> <input
 				type="hidden" name="shareHouseId"
-				value="${shareHouse.shareHouseId }">
+				value="${shareHouse.shareHouseId }" />
 			<div>
-				<h4>${shareHouseTitle }</h4>
+				<h4>${shareHouse.title}</h4>
 				<label>방문 가능 날짜
 					<div id="show"></div>
 				</label>
@@ -154,7 +154,7 @@
 			alert("오늘보다 이전날짜는 선택 하실 수 없습니다.");
 		} else {
 
-			if (confirm("선택하신 날짜가 " + selectedYear + "년" + selectedMonth + "월"
+			if (confirm("선택하신 날짜가 " + selectedYear + "년" + selectedMonth + "달"
 					+ selectedDay + "일 맞습니까?")) {
 				alert("선택하신 날짜로 예약하겠습니다.");
 				document.getElementById("year").value = selectedYear;

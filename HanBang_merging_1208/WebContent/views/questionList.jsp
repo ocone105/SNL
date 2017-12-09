@@ -36,6 +36,7 @@
 							<article>
 								<p><a href="detailQuestion.do?questionId=${question.questionId }"> * 문의내용 : ${question.questionContent}</a></p>
 								<p><a href="removeQuestion.do?questionId=${question.questionId }">문의삭제</a></p>
+								<p><a href="${ctx }/review/registReview.do?shareHouseId=${question.shareHouseId }">후기 등록</a></p>
 							</article>
 						</div>
 					</div>

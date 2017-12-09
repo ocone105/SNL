@@ -21,8 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import hanbang.domain.Answer;
 import hanbang.domain.Member;
 import hanbang.domain.Review;
+import hanbang.domain.ShareHouse;
 import hanbang.service.MemberService;
 import hanbang.service.ReviewService;
+import hanbang.service.ShareHouseService;
 
 //@MultipartConfig(maxFileSize=1024*1024*1024, location="C:/Users/limsuhyun/eclipse-workspace/HanBang/WebContent/file")
 @Controller
@@ -32,11 +34,19 @@ public class ReviewController {
 	private ReviewService service;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ShareHouseService shareHouseService;
 
 	// 후기 등록
 	@RequestMapping("/review/registReview.do")
-	public String registerReview() {
-		return "redirect:/views/reviewCreate.jsp";
+	public String registerReview(Model model, String shareHouseId) {
+		
+		int id = Integer.parseInt(shareHouseId);
+		ShareHouse shareHouse = shareHouseService.find(id);
+
+		model.addAttribute("shareHouse", shareHouse);
+		
+		return "/views/reviewCreate.jsp";
 	}
 
 	//

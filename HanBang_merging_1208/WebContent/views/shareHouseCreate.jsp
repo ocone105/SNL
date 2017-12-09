@@ -126,61 +126,61 @@
 					<label> <input type="checkbox" name="publicUsage"
 						value="cctv"> <span>CCTV</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="wifi"> <span>와이파이</span>
+						value="와이파이"> <span>와이파이</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="internet"> <span>인터넷</span>
+						value="인터넷"> <span>인터넷</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="livingRoom"> <span>거실</span>
+						value="거실"> <span>거실</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="veranda"> <span>베란다</span>
+						value="베란다"> <span>베란다</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="shoeRack"> <span>신발장</span>
+						value="신발장"> <span>신발장</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
 						value="tv"> <span>TV</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="airConditioner"> <span>에어컨</span>
+						value="에어컨"> <span>에어컨</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="dishDryer"> <span>식기건조기</span>
+						value="식기건조기"> <span>식기건조기</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="refrigerator"> <span>냉장고</span>
+						value="냉장고"> <span>냉장고</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="induction"> <span>인덕션</span>
+						value="인덕션"> <span>인덕션</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="gasStove"> <span>가스레인지</span>
+						value="가스레인지"> <span>가스레인지</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="microwave"> <span>전자레인지</span>
+						value="전자레인지"> <span>전자레인지</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="oven"> <span>오븐</span>
+						value="오븐"> <span>오븐</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="cookware"> <span>조리도구</span>
+						value="조리도구"> <span>조리도구</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="toasters"> <span>토스터기</span>
+						value="조리도구"> <span>토스터기</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="electricPot"> <span>전기포트</span>
+						value="전기포트"> <span>전기포트</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="waterPurifier"> <span>정수기</span>
+						value="정수기"> <span>정수기</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="riceCooker"> <span>밥솥</span>
+						value="밥솥"> <span>밥솥</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="desk"> <span>테이블</span>
+						value="테이블"> <span>테이블</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="cushion"> <span>쿠션</span>
+						value="쿠션"> <span>쿠션</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="sofa"> <span>소파</span>
+						value="소파"> <span>소파</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="chair"> <span>의자</span>
+						value="의자"> <span>의자</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="table"> <span>책상</span>
+						value="책상"> <span>책상</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="bookcase"> <span>책장</span>
+						value="책장"> <span>책장</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="vacuum"> <span>청소기</span>
+						value="청소기"> <span>청소기</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="iron"> <span>다리미</span>
+						value="다리미"> <span>다리미</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="washer"> <span>세탁기</span>
+						value="세탁기"> <span>세탁기</span>
 					</label> <label> <input type="checkbox" name="publicUsage"
-						value="recycleBin"> <span>분리수거함</span>
+						value="분리수거함"> <span>분리수거함</span>
 					</label>
 				</div>
 			</div>
@@ -206,19 +206,19 @@
 						</div>
 						<div class="roomOption clear">
 							<label> <input type="checkbox" name="providedGood"
-								value="roomAirConditioner"> <span>에어컨</span>
+								value="에어컨"> <span>에어컨</span>
 							</label> <label> <input type="checkbox" name="providedGood"
-								value="roomDesk"> <span>책상</span>
+								value="책상"> <span>책상</span>
 							</label> <label> <input type="checkbox" name="providedGood"
-								value="roomChair"> <span>의자</span>
+								value="의자"> <span>의자</span>
 							</label> <label> <input type="checkbox" name="providedGood"
-								value="roomStand"> <span>스탠드</span>
+								value="스탠드"> <span>스탠드</span>
 							</label> <label> <input type="checkbox" name="providedGood"
-								value="roomBed"> <span>침대</span>
+								value="침대"> <span>침대</span>
 							</label> <label> <input type="checkbox" name="providedGood"
-								value="roomDrawer"> <span>서랍장</span>
+								value="서랍장"> <span>서랍장</span>
 							</label> <label> <input type="checkbox" name="providedGood"
-								value="roomStorage"> <span>수납함</span>
+								value="수납함"> <span>수납함</span>
 							</label>
 						</div>
 					</div>
