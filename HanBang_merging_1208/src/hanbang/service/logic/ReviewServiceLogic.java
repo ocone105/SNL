@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import antlr.collections.AST;
 import hanbang.domain.Answer;
 import hanbang.domain.Review;
 import hanbang.service.ReviewService;
@@ -15,8 +14,8 @@ import hanbang.store.ReviewAnswerStore;
 import hanbang.store.ReviewStore;
 
 @Service
-public class ReviewServiceLogic implements ReviewService{
-	
+public class ReviewServiceLogic implements ReviewService {
+
 	@Autowired
 	private ReviewStore rStore;
 	@Autowired
@@ -25,7 +24,7 @@ public class ReviewServiceLogic implements ReviewService{
 	@Override
 	public boolean register(Review review) {
 		int check = rStore.create(review);
-		if(check == 0) {
+		if (check == 0) {
 			return false;
 		} else {
 			return true;
@@ -46,9 +45,14 @@ public class ReviewServiceLogic implements ReviewService{
 	}
 
 	@Override
+	public List<Review> findByMemberId(String memberId) {
+		return rStore.retrieveByMemberId(memberId);
+	}
+
+	@Override
 	public boolean modify(Review review) {
 		int check = rStore.update(review);
-		if(check == 0) {
+		if (check == 0) {
 			return false;
 		} else {
 			return true;
@@ -58,7 +62,7 @@ public class ReviewServiceLogic implements ReviewService{
 	@Override
 	public boolean removeByShareHouse(int shareHouseId) {
 		int check = rStore.deleteByShareHouse(shareHouseId);
-		if( check == 0) {
+		if (check == 0) {
 			return false;
 		} else {
 			return true;
@@ -71,7 +75,7 @@ public class ReviewServiceLogic implements ReviewService{
 		map.put("reporterId", memberId);
 		map.put("reviewId", reviewId);
 		int check = rStore.reviewReport(map);
-		if(check == 0) {
+		if (check == 0) {
 			return false;
 		} else {
 			return true;
@@ -81,7 +85,7 @@ public class ReviewServiceLogic implements ReviewService{
 	@Override
 	public boolean removeByMemberId(String memberId) {
 		int check = rStore.deleteByMemberId(memberId);
-		if(check == 0) {
+		if (check == 0) {
 			return false;
 		} else {
 			return true;
@@ -91,16 +95,31 @@ public class ReviewServiceLogic implements ReviewService{
 	@Override
 	public boolean removeByReviewId(int reviewId) {
 		int check = rStore.deleteByReviewId(reviewId);
-		if(check == 0) {
+		if (check == 0) {
 			return false;
 		} else {
 			int answerCheck = aStore.deleteByReviewId(reviewId);
-			if(answerCheck > 1) {
+			if (answerCheck > 1) {
 				return true;
 			} else {
 				aStore.deleteByReviewId(reviewId);
 				return true;
 			}
+		}
+	}
+
+	@Override
+	public List<Integer> countReportReview(int reviewId) {
+		return rStore.countReports(reviewId);
+	}
+
+	@Override
+	public boolean removeReportedReviews(int reviewId) {
+		int check = rStore.deleteReportedReviews(reviewId);
+		if (check == 0) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 

@@ -7,12 +7,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hanbang.domain.Photo;
 import hanbang.domain.ShareHouse;
 import hanbang.service.EssentialInfoService;
 import hanbang.service.ExtraInfoService;
+import hanbang.service.RoomService;
 import hanbang.service.ShareHouseService;
 import hanbang.store.PhotoStore;
-import hanbang.store.RoomStore;
 import hanbang.store.ShareHouseStore;
 
 @Service
@@ -21,7 +22,7 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	@Autowired
 	private ShareHouseStore shareHouseStore;
 	@Autowired
-	private RoomStore roomStore;
+	private RoomService roomService;
 	@Autowired
 	private EssentialInfoService essentialInfoService;
 	@Autowired
@@ -42,7 +43,7 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 		List<ShareHouse> list = shareHouseStore.retriveAll();
 		for (ShareHouse shareHouse : list) {
 
-			shareHouse.setRooms(roomStore.retrive(shareHouse.getShareHouseId()));
+			shareHouse.setRooms(roomService.find(shareHouse.getShareHouseId()));
 			shareHouse.setEssentialInfo(essentialInfoService.find(shareHouse.getShareHouseId()));
 			shareHouse.setPhotos(photoStore.retriveAll(shareHouse.getShareHouseId()));
 
@@ -55,9 +56,8 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 	public ShareHouse find(int shareHouseId) {
 
 		ShareHouse shareHouse = shareHouseStore.retrive(shareHouseId);
-		shareHouse.setRooms(roomStore.retrive(shareHouseId));
-		shareHouse.setEssentialInfo(essentialInfoService.find(shareHouseId));
-		shareHouse.setExtraInfo(extraInfoService.find(shareHouseId));
+		List<Photo> photos = photoStore.retriveAll(shareHouseId);
+		shareHouse.setPhotos(photos);
 		return shareHouse;
 	}
 
@@ -67,7 +67,7 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 		list = shareHouseStore.retriveByMemberId(memberId);
 		for (ShareHouse shareHouse : list) {
 
-			shareHouse.setRooms(roomStore.retrive(shareHouse.getShareHouseId()));
+			shareHouse.setRooms(roomService.find(shareHouse.getShareHouseId()));
 			shareHouse.setEssentialInfo(essentialInfoService.find(shareHouse.getShareHouseId()));
 
 		}
@@ -110,7 +110,7 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 
 	@Override
 	public boolean remove(int shareHouseId) {
-		roomStore.deleteByShareHouse(shareHouseId);
+		roomService.deleteByShareHouse(shareHouseId);
 		int check = shareHouseStore.delete(shareHouseId);
 		if (check > 0) {
 			return true;
@@ -130,7 +130,7 @@ public class ShareHouseServiceLogic implements ShareHouseService {
 
 			shareHouse = list.get(index);
 			int shareHouseId = shareHouse.getShareHouseId();
-			roomStore.deleteByShareHouse(shareHouseId);
+			roomService.deleteByShareHouse(shareHouseId);
 			essentialInfoService.deleteByShareHouse(shareHouseId);
 			extraInfoService.deleteByShareHouse(shareHouseId);
 			index++;

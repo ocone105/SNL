@@ -1,0 +1,224 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 속성 제공 순서
+overflow
+display
+float
+position
+left,right,top,bottom
+padding
+margin
+width
+height
+background
+border
+font
+etc
+*/
+
+/*header*/
+header h1 { float:left; width:8%; padding:15px 0 0 40px; box-sizing:border-box;}
+.memberMenu { float:left; width:92%;}
+.memberMenu > a { display:block; float:left; padding:15px 20px; font-size:14px; color:#fff; box-sizing:border-box;}
+.memberMenu > a:hover { background:#3f7f95;}
+.memberMenu ul { float:right; padding:15px 40px 0 0; box-sizing:border-box;}
+.loginHeader,
+.memberJoinHeader { padding:50px 0 0 0; background:#fff; text-align:center;}
+.loginHeader h1,
+.memberJoinHeader h1 { float:none; padding:0 0 60px 0; width:100%; font-size:40px;}
+.loginHeader h1 a,
+.memberJoinHeader h1 a { color:#000;}
+.loginHeader nav ul,
+.memberJoinHeader nav ul { float:none; position:absolute; right:20px; top:20px;}
+.loginHeader nav ul li a,
+.memberJoinHeader nav ul li a { font-size:14px; color:#000;}
+.gnb { clear:both; padding-left:50px; background:#d3d5d4;}
+.gnb li { float:left; padding:10px 10px; box-sizing:border-box;}
+.gnb li a { color:#000;}
+.gnb li a:hover { font-weight:bold;}
+
+/*main*/
+main > section { margin:0 auto; width:800px;}
+
+/*houseCreate & Modify*/
+.houseCreate > section,
+.houseModify > section { width:500px !important;}
+.houseMapView { overflow:hidden;}
+.houseMapView #map { height:300px;}
+.houseMapView { position:relative; border:1px solid #e1ded9; border-radius:5px; box-sizing: border-box;}
+.houseMapView > div:nth-last-of-type(1) { z-index:1; position:absolute; left:0; bottom:0; padding:10px; box-sizing:border-box;}
+.houseMapView > div:nth-last-of-type(1) input { float:left; width:370px;}
+.houseMapView > div:nth-last-of-type(1) button { display:inline-block; float:left; padding:10px 20px; margin:5px 0 0 10px; box-sizing:border-box; background:#42a465; font-size: 15px; color:#fff; border-radius:5px;}
+.houseMapView + div { clear:both; padding:10px; box-sizing:border-box; margin:20px 0; background:#f5f5f5; border:1px solid #e1ded9; border-radius:5px;}
+.houseMapView + div label { padding-left:10px; font-size:16px; line-height:40px;}
+
+/*login*/
+.login > section { width:400px !important;}
+
+/*memberJoin*/
+.memberJoinSection { width:500px !important;}
+.memberType { padding-bottom:20px;}
+.memberInfo01,
+.memberInfo02 { padding:20px; box-sizing:border-box; margin:5px 0 20px; background:#f5f5f5; border:1px solid #e1ded9; border-radius:5px;}
+
+/*memberModify*/
+.memberModifySection { width:500px !important;}
+.memberModifySection form > div:first-child,
+.memberModifySection form > div:first-child + div { padding:20px; box-sizing:border-box; margin-bottom:30px; border:1px solid #e1ded9; border-radius:5px;}
+.memberModifySection form > div:first-child label,
+.memberModifySection form > div:first-child + div label { padding-left:10px; font-size:16px; line-height:40px;}
+.houseOwned { padding:40px 0; box-sizing:border-box; margin:50px 0 10px; border-top:1px dashed #e1ded9; border-bottom:1px dashed #e1ded9;}
+.houseOwned h4 { padding-bottom:20px; font-size:25px; font-weight:normal; text-align:center;}
+
+.houseOwned > ul > li { padding:20px; box-sizing:border-box; margin-bottom:20px; background:#f5f5f5; border-radius:5px;}
+
+.houseOwned > ul > li > ul { float:left; padding-right:20px; box-sizing:border-box; width:80%;}
+.houseOwned > ul > li > ul li { font-size:17px; line-height:30px;}
+.houseOwned > ul > li > div { float:left; width:20%;}
+.houseOwned > ul > li > div a { display:block; padding:8px 20px; box-sizing:border-box; margin-bottom:12px; background:#42a465; border-radius:5px; font-size:15px; text-align:center; color:#fff;}
+.houseOwned > ul > li > div a:hover { box-shadow:0 0 5px #42a465;}
+.houseOwned > ul > li > div button { padding:5px 0;}
+.houseOwned > ul > li > div button:hover { box-shadow:0 0 5px #555;}
+
+.houseOwned > ul + a { clear:both; display:block; padding:20px 0; box-sizing:border-box; margin:30px 100px 0; border:2px solid #e1ded9; border-radius:2px; font-size:20px; text-align:center; color:#555;}
+.houseOwned > ul + a span { padding-right:10px; font-size:25px; font-weight:bold; color:red;}
+.houseOwned > ul + a:hover { border:2px solid #42a465; color:#42a465;}
+.houseOwned > ul + a:hover span { color:#42a465;}
+.houseOwned + a { display:inline-block; position:relative; left:400px; padding:5px 0; box-sizing:border-box; width:100px; background:#555; border-radius:0; font-size:15px; color:#fff; text-align:center;}
+.houseOwned + a:hover { background:red;}
+.houseOwned + a + input { margin-top:60px;}
+
+/*memberProviderList & mamberUserList & questionList*/
+.listHead { display:flex; padding:10px 0; box-sizing:border-box; margin-top:30px; background:#555; font-size:14px; text-align:center; color:#fff;}
+.listHead span { flex:1;}
+.detail > div:nth-child(odd) div,
+.questionList li > a { display:flex; padding:10px 0; box-sizing:border-box; background:#fff; border-bottom:1px solid #e1ded9; font-size:14px; text-align:center;}
+.detail > div:nth-child(odd) div span,
+.questionList li > a span { flex:1;}
+.detail > div:nth-child(even) { padding:15px 20px 15px 20px; background:#f5f5f5; border-left:1px solid #e1ded9; border-right:1px solid #e1ded9; border-bottom:1px solid #e1ded9; color:#000; font-size:14px;}
+.detail > div:nth-child(even) div h4 { font-size:20px;}
+.detail > div:nth-child(even) div ul { padding:10px 0; box-sizing:border-box;}
+.detail > div:nth-child(even) div ul li + li { padding-top:10px; box-sizing:border-box; margin-top:10px; border-top:1px dashed #555;}
+.detail > div:nth-child(even) div ul li a { display:inline-block; padding:10px; box-sizing:border-box; width:600px; background:#fff; border:1px solid #555; text-align:center;}
+.detail > div:nth-child(even) div ul li a:hover { border:1px solid #42a465; color:#42a465;}
+.detail > div:nth-child(even) div ul li span { padding-left:15px; box-sizing:border-box;}
+.detail > div:nth-child(even) div ul li span b { padding-left:6px; box-sizing:border-box; color:red;}
+.detail > div:nth-child(even) div button { position:relative; left:660px; padding:5px 0; box-sizing:border-box; margin-top:20px; width:100px; text-align:center;}
+.detail > div:nth-child(even) div button:hover { background:red;}
+.questionList li > a:hover { background:#f5f5f5;}
+.questionList li > a span button { padding:2px 0; box-sizing:border-box; width:80px; background:#3f7f95; font-size:13px;}
+.questionList li > a span button:hover { background:#42a465;}
+.questionList li > a span button.reviewWriteBtn { background:orange;}
+.questionList li > a span button.reviewWriteBtn:hover { background:yellowgreen;}
+
+/*questionDetail & reviewDetail*/
+.questionListText { padding:20px; box-sizing:border-box; margin-top:10px; background:#f5f5f5; border-radius:5px;}
+.questionlistHead { position:relative; padding-bottom:15px; box-sizing:border-box; margin-bottom:15px; border-bottom:1px solid #e1ded9;}
+.questionlistHead h4 { display:inline-block; padding-right:10px; font-size:20px;}
+.questionlistHead > span { font-size:15px;}
+.questionlistHead > span:before { content:" | ";}
+.questionInfo { position:absolute; right:10px; bottom:0; padding:10px; box-sizing:border-box; background:#e1ded9; border-radius:5px;}
+article { font-size: 14px; padding:20px; box-sizing:border-box; min-height:100px; border-bottom:1px dashed #e1ded9;}
+.answer ul li { padding:20px; box-sizing:border-box; border-bottom:1px dashed #e1ded9;}
+.answerProvider:before { content:"A."; font-size:30px;}
+.answerProvider { text-indent:50px; box-sizing:border-box;}
+.answerUser:before { content:"Q."; font-size:30px;}
+
+.answer form { padding:10px; box-sizing:border-box; background:#fff; border:1px solid #e1ded9; border-radius:5px;}
+.answer form textarea { float:left; padding:10px; width:90%; height:100px; border:1px solid #e1ded9; box-sizing:border-box; border-radius:5px;}
+.answer form > div { float:left; padding-left:20px; box-sizing:border-box; width:10%;}
+.answer form > div input,
+.answer form > div button { padding:10px 0;}
+.answer form > div button:hover { background:red;}
+
+
+
+/*shareHouseCreate & Modify*/
+.shareHouseCreate h4 { font-size:25px;}
+.shareHouseCreate > div:first-of-type > div { padding:20px; box-sizing:border-box; margin-bottom:20px;background:#f5f5f5; border:1px solid #e1ded9; border-radius:5px;}
+.shareHouseCreate > input { margin:30px 0 10px;}
+.houseInfo { background:#f5f5f5; border:1px solid #e1ded9; border-radius:5px;}
+.shareHouseMapView { overflow:hidden;}
+.shareHouseMapView #map { height:300px; background:yellow;}
+.shareHouseMapView { position:relative; float:left; margin-top:20px; width:60%; border:1px solid #e1ded9; border-radius:5px; box-sizing: border-box;}
+.shareHouseMapView > div:nth-last-of-type(1) { z-index:1; position:absolute; left:0; bottom:0; padding:10px; box-sizing:border-box;}
+.shareHouseMapView > div:nth-last-of-type(1) input { float:left; width:320px;}
+.shareHouseMapView > div:nth-last-of-type(1) a { display:inline-block; float:left; padding:10px 20px; margin:5px 0 0 10px; box-sizing:border-box; background:#42a465; font-size: 15px; color:#fff; border-radius:5px;}
+.shareHouseMapView + div { float:left; width:40%;}
+.shareHouseMapView + div select { margin-left:170px; border:2px solid #42a465; color:#42a465;}
+.shareHouseMapView + div select + div { padding:10px 0 0 10px; box-sizing:border-box;}
+.shareHouseMapView + div select + div label { padding-left:10px; font-size:16px; line-height:40px;}
+.shareHouseInfo > div { float:left; width:50%;}
+.shareHouseInfo h4,
+.roomInfo h4 { padding-bottom:10px;}
+.roomInfo > div > div:first-child { padding-bottom:15px; margin-bottom:15px; border-bottom:1px dashed #e1ded9;}
+.roomInfo > div > div:last-child > div { float:left; width:50%;}
+.roomInfo > div > div:last-child > div:first-child { padding-right:10px; box-sizing:border-box;}
+.roomInfo > div > div:last-child > div:first-child label { padding-left:10px; font-size:16px; line-height:40px;}
+.roomInfo > div > div:last-child > div + div { padding:25px 0 0 20px; box-sizing:border-box;}
+.roomInfo button { margin-top:20px;}
+
+/*shareHouseList*/
+main.shareHouseListMain { padding:0;}
+main.shareHouseListMain > section { width:100%;}
+.shareHouseListMapView { position:relative; float:left; width:70%;}
+.shareHouseListMapView .searchBar { z-index:100; position:relative; left:50px; top:50px; border-radius:2px; box-shadow:0 0 10px #555;}
+.shareHouseListMapView .searchBar input[type="text"] { padding:0; margin-left:3px; width:300px;}
+.shareHouseListMapView .searchBar input[type="submit"] { marign:0;}
+.shareHouseListMapView #map { position:absolute; left:0; top:0; width:100%; height:900px;}
+.shareHouseList { overflow:auto; float:left; padding:20px; box-sizing:border-box; width:30%; height:900px; background:#fff;}
+.shareHouseList h3 { padding-bottom:20px; font-size:25px;}
+.shareHouseList ul li { margin:10px 0 20px 0;}
+.shareHouseList ul li a { display:block; border:1px solid #e1ded9; border-radius:2px;}
+.shareHouseList ul li a > div:first-child { position:relative; text-align:center;}
+.shareHouseList ul li a > div:first-child > div { position:absolute; left:0; top:0; overflow:hidden; width:100%; height:200px; background:rgba(0, 0, 0, 0.7);}
+.shareHouseList ul li a > div:first-child > div img { width:100%;}
+.shareHouseList ul li a > div:first-child > div + div { position:absolute; left:0; top:0;}
+.shareHouseList ul li a > div:first-child > div + div h4 { padding:80px 0 15px; box-sizing:border-box; font-size:24px; color:#fff;}
+.shareHouseList ul li a > div:first-child > div + div p { display:inline-block; padding:3px 5px; box-sizing:border-box; border-radius:2px; font-size:13px; color:#000;}
+.shareHouseList ul li a > div + div { padding:210px 10px 10px; box-sizing:border-box;}
+.shareHouseList ul li a > div + div span:before { content: " | ";}
+.shareHouseList ul li a > div + div span:first-child:before { content:none;}
+.shareHouseList ul li a > div + div span { font-size:14px; line-height:16px;}
+.shareHouseList ul li a > div + div p { padding-top:12px; box-sizing:border-box; font-size:20px; font-weight:bold; color:red; text-align:right;}
+
+/*interestShareHouseList & myHouseList*/
+.shareHouseValue { position:relative; padding:20px; box-sizing:border-box; margin:50px 0 20px; border:1px solid #e1ded9; border-radius:2px;}
+.shareHouseValue + div { margin-top:0;}
+.shareHouseValue a { display:block;}
+.shareHouseValue a h4 { display:inline-block; padding-right:10px; font-size:20px;}
+.shareHouseValue a h4 + p { display:inline-block; padding:8px 20px; box-sizing:border-box; border-radius:5px; font-size:15px; color:#000;}
+.shareHouseValue a div span:before { content: " | ";}
+.shareHouseValue a div span:first-of-type:before { content:none;}
+.shareHouseValue a div span { font-size:15px; line-height:16px;}
+.shareHouseValue a p:last-child { padding-top:50px; box-sizing:border-box; font-size:20px; font-weight:bold; color:red; text-align:right;}
+.shareHouseValue a + div { position:absolute; right:10px; top:10px; width:140px;}
+.shareHouseValue a + div a { padding:8px 20px; box-sizing:border-box; margin-bottom:12px; background:#42a465; border-radius:5px; font-size:15px; color:#fff;}
+.shareHouseValue a + div a:hover { box-shadow:0 0 5px #42a465;}
+.shareHouseValue a + div button { padding:5px 0;}
+.shareHouseValue a + div button:hover { box-shadow:0 0 5px #555;}
+.shareHouseNull { padding:50px 0; border:1px solid #e1ded9; border-radius:2px; font-size:18px; text-align:center;}
+.shareHouseNull span { padding-right:5px; font-size:20px; font-weight:bold; color:red;}
+aside { position:fixed; right:50px; bottom:100px; padding:10px; box-sizing:border-box; width:220px; background:#f5f5f5; border:1px solid #e1ded9; border-radius:2px; text-align:center;}
+aside p { padding-bottom:10px; font-size:13px;}
+aside a { display:block; padding:10px 0; box-sizing:border-box; background:#3f7f95; font-size:15px; color:#fff; border-radius:5px;}
+aside a:hover { background:#42a465;}
+
+/*footer*/
+.reviewCreate + footer,
+.reviewModify + footer { position:absolute; left:0; bottom:0; width:100%;}
+
+/*radio & checkBox*/
+.ea2 label { float:left; width:180px;}
+.ea3 { border:1px dashed #;}
+.ea3 label { float:left; width:250px;}
+.ea3 label span { line-height:50px;}
+.ea4 label { float:left; width:90px;}
+.eaNone label { float:left; width:125px;}
+.memberType label { float:left; width:250px;}
+.memberType input[type="radio"] + span { line-height:100px;}
+.roomOption label { float:left; width:115px;}
+
+/*etc*/
+input { padding:5px 0; margin:3px 0; border-radius:5px;}

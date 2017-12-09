@@ -7,17 +7,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
 
-
 import hanbang.domain.Review;
 import hanbang.store.ReviewStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.ReviewMapper;
 
 @Repository
-public class ReviewStoreLogic implements ReviewStore{
-	
+public class ReviewStoreLogic implements ReviewStore {
+
 	private SqlSessionFactory factory;
-	
+
 	public ReviewStoreLogic() {
 		factory = SqlSessionFactoryProvider.getSqlSessionFactory();
 	}
@@ -26,7 +25,7 @@ public class ReviewStoreLogic implements ReviewStore{
 	public int create(Review review) {
 		SqlSession session = factory.openSession();
 		int check = 0;
-		
+
 		try {
 			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
 			check = mapper.create(review);
@@ -34,7 +33,7 @@ public class ReviewStoreLogic implements ReviewStore{
 		} finally {
 			session.close();
 		}
-		
+
 		return check;
 	}
 
@@ -42,14 +41,27 @@ public class ReviewStoreLogic implements ReviewStore{
 	public List<Review> retriveAll(int shareHouseId) {
 		SqlSession session = factory.openSession();
 		List<Review> list = null;
-		
+
 		try {
 			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
 			list = mapper.retriveAll(shareHouseId);
 		} finally {
 			session.close();
 		}
-		
+
+		return list;
+	}
+
+	@Override
+	public List<Review> retrieveByMemberId(String memberId) {
+		SqlSession session = factory.openSession();
+		List<Review> list = null;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			list = mapper.retrieveByMemberId(memberId);
+		} finally {
+			session.close();
+		}
 		return list;
 	}
 
@@ -57,7 +69,7 @@ public class ReviewStoreLogic implements ReviewStore{
 	public Review retrive(int retriveId) {
 		SqlSession session = factory.openSession();
 		Review review = null;
-		
+
 		try {
 			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
 			review = mapper.retrive(retriveId);
@@ -71,7 +83,7 @@ public class ReviewStoreLogic implements ReviewStore{
 	public int update(Review review) {
 		SqlSession session = factory.openSession();
 		int check = 0;
-		
+
 		try {
 			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
 			check = mapper.update(review);
@@ -131,6 +143,33 @@ public class ReviewStoreLogic implements ReviewStore{
 		try {
 			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
 			check = mapper.reviewReport(map);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return check;
+	}
+
+	@Override
+	public List<Integer> countReports(int reviewId) {
+		SqlSession session = factory.openSession();
+		List<Integer> list = null;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			list = mapper.countReports(reviewId);
+		} finally {
+			session.close();
+		}
+		return list;
+	}
+
+	@Override
+	public int deleteReportedReviews(int reviewId) {
+		SqlSession session = factory.openSession();
+		int check = 0;
+		try {
+			ReviewMapper mapper = session.getMapper(ReviewMapper.class);
+			check = mapper.deleteReportedReviews(reviewId);
 			session.commit();
 		} finally {
 			session.close();

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hanbang.store.mapper.InterestShareHouseMapper">
+	<insert id="create" parameterType="interestShareHouse">
+		INSERT INTO
+		INTERESTSHAREHOUSE_TB (SHAREHOUSEID, MEMBERID)
+		VALUES(#{shareHouseId} ,
+		#{memberId})
+	</insert>
+
+	<select id="retriveAll" parameterType="String" resultType="ShareHouse">
+
+		select title, sharehouseId
+		from sharehouse_tb
+		where shareHouse_tb.shareHouseId in(
+		SELECT INTERESTSHAREHOUSE_TB.SHAREHOUSEID
+		FROM INTERESTSHAREHOUSE_TB
+		WHERE MEMBERID
+		= #{memberId})
+	</select>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+		INTERESTSHAREHOUSE_TB
+		WHERE SHAREHOUSEID =#{shareHouseId}
+	</delete>
+
+	<delete id="deleteByMemberId" parameterType="String">
+		DELETE FROM
+		INTERESTSHAREHOUSE_TB
+		WHERE MEMBERID = #{memberId}
+	</delete>
+
+	<delete id="deleteInterestShareHouse" parameterType="map">
+		DELETE FROM
+		INTERESTSHAREHOUSE_TB
+		WHERE MEMBERID = #{memberId} and
+		SAHREHOUSEID = #{sharehouseId}
+
+	</delete>
+
+
+
+</mapper>

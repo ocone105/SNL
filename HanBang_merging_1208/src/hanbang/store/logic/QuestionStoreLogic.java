@@ -2,12 +2,10 @@ package hanbang.store.logic;
 
 import java.util.List;
 
-import org.apache.catalina.mapper.Mapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
 
-import hanbang.domain.Paging;
 import hanbang.domain.Question;
 import hanbang.store.QuestionStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
@@ -145,32 +143,6 @@ public class QuestionStoreLogic implements QuestionStore{
 		}
 		
 		return check;
-	}
-
-	@Override
-	public List<Paging> selectPaging(Paging paging) {
-		SqlSession session = factory.openSession();
-		List<Paging> list = null;
-		try {
-			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
-			list = mapper.selectPaging(paging);
-		} finally {
-			session.close();
-		}
-		return list;
-	}
-
-	@Override
-	public int selectTotalPaging() {
-		SqlSession session = factory.openSession();
-		int totalPages = 0;
-		try {
-			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
-			totalPages = mapper.selectTotalPaging();
-		} finally {
-			session.close();
-		}
-		return totalPages;
 	}
 
 }

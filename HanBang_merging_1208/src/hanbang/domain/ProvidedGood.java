@@ -6,6 +6,12 @@ public class ProvidedGood {
 	private int roomId;
 	private String providedGood;
 
+	@Override
+	public String toString() {
+		return "ProvidedGood [providedGoodId=" + providedGoodId + ", roomId=" + roomId + ", providedGood="
+				+ providedGood + "]";
+	}
+
 	public int getProvidedGoodId() {
 		return providedGoodId;
 	}

@@ -6,6 +6,12 @@ public class PublicUsage {
 	private int essentialInfoId;
 	private String publicUsage;
 
+	@Override
+	public String toString() {
+		return "PublicUsage [publicUsageId=" + publicUsageId + ", essentialInfoId=" + essentialInfoId + ", publicUsage="
+				+ publicUsage + "]";
+	}
+
 	public int getPublicUsageId() {
 		return publicUsageId;
 	}

@@ -2,7 +2,6 @@ package hanbang.store;
 
 import java.util.List;
 
-import hanbang.domain.Paging;
 import hanbang.domain.Question;
 
 public interface QuestionStore {
@@ -22,9 +21,5 @@ public interface QuestionStore {
 	int deleteByMemberId(String memberId);
 
 	int deleteByShareHouse(int shareHouseId);
-	
-	List<Paging> selectPaging(Paging paging);
-	
-	int selectTotalPaging();
 
 }

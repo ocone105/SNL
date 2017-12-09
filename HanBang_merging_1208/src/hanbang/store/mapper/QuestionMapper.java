@@ -2,7 +2,6 @@ package hanbang.store.mapper;
 
 import java.util.List;
 
-import hanbang.domain.Paging;
 import hanbang.domain.Question;
 
 public interface QuestionMapper {
@@ -22,9 +21,5 @@ public interface QuestionMapper {
 	int deleteByMemberId(String memberId);
 
 	int deleteByShareHouse(int shareHouseId);
-
-	List<Paging> selectPaging(Paging paging);
-
-	int selectTotalPaging();
 
 }

@@ -41,9 +41,10 @@ public class EssentialInfoServiceLogic implements EssentialInfoService {
 		EssentialInfo essentialInfo = essentialStore.retrive(shareHouseId);
 
 		int essentialInfoId = essentialInfo.getEssentialInfoId();
-
-		essentialInfo.setPublicUsage(publicUsageStore.retriveAll(essentialInfoId));
-		return essentialStore.retrive(shareHouseId);
+		List<PublicUsage> publicUsages = publicUsageStore.retriveAll(essentialInfoId);
+		essentialInfo.setPublicUsage(publicUsages);
+		
+		return essentialInfo;
 	}
 
 	@Override

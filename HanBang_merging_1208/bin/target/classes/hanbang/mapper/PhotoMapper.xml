@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hanbang.store.mapper.PhotoMapper">
+
+	<insert id="create" parameterType="map">
+		<selectKey keyProperty="photoId" resultType="int" order="BEFORE">
+			SELECT
+			PHOTOID_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO
+		photo_tb(photoId, shareHouseId, photo)
+		VALUES(#{photoId},
+		#{shareHouseId}, #{photo})
+	</insert>
+
+	<update id="update" parameterType="Photo">
+		UPDATE photo_tb
+		SET
+		photo =
+		#{photo}
+		WHERE shareHouseId = #{shareHouseId} AND photoId = #{photoId}
+	</update>
+
+	<select id="retriveAll" parameterType="int" resultType="Photo">
+		SELECT
+		photoId, shareHouseId, photo
+		FROM photo_tb
+		WHERE shareHouseId =
+		#{shareHouseId}
+	</select>
+
+	<select id="retrive" parameterType="int" resultType="Photo">
+		SELECT
+		photoId, shareHouseId, photo
+		FROM photo_tb
+		WHERE photoId = #{photoId}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM photo_tb
+		WHERE
+		photoId = #{photoId}
+	</delete>
+
+	<delete id="deleteByShareHouse" parameterType="int">
+		DELETE FROM
+		photo_tb
+		WHERE shareHouseId = #{shareHouseId}
+	</delete>
+</mapper>

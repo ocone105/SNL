@@ -144,33 +144,33 @@ public class ShareHouseController {
 	@RequestMapping(value = "/shareHouse/shareHouseModify.do", method = RequestMethod.GET)
 	public String modifyShareHouse(String shareHouseId, Model model, HttpSession session) {
 
-		System.out.println(shareHouseId);
-
-		String memberId = (String) session.getAttribute("memberId");
-		int id = Integer.parseInt(shareHouseId);
-
-		System.out.println(id);
-
-		ShareHouse shareHouse = shareHouseService.find(id);
-
-		System.out.println(shareHouse.toString());
-
-		EssentialInfo essentialInfo = essentialInfoService.find(id);
-
-		System.out.println(essentialInfo.toString());
-
-		List<Room> roomList = roomService.find(id);
-
-		System.out.println(roomList.toString());
-
-		List<Photo> photoList = shareHouse.getPhotos();
-
-		System.out.println(photoList.toString());
-
-		model.addAttribute("shareHouse", shareHouse);
-		model.addAttribute("essentialInfo", essentialInfo);
-		model.addAttribute("roomList", roomList);
-		model.addAttribute("photoList", photoList);
+		// System.out.println(shareHouseId);
+		//
+		// String memberId = (String) session.getAttribute("memberId");
+		// int id = Integer.parseInt(shareHouseId);
+		//
+		// System.out.println(id);
+		//
+		// ShareHouse shareHouse = shareHouseService.find(id);
+		//
+		// System.out.println(shareHouse.toString());
+		//
+		// EssentialInfo essentialInfo = essentialInfoService.find(id);
+		//
+		// System.out.println(essentialInfo.toString());
+		//
+		// List<Room> roomList = roomService.find(id);
+		//
+		// System.out.println(roomList.toString());
+		//
+		// List<Photo> photoList = shareHouse.getPhotos();
+		//
+		// System.out.println(photoList.toString());
+		//
+		// model.addAttribute("shareHouse", shareHouse);
+		// model.addAttribute("essentialInfo", essentialInfo);
+		// model.addAttribute("roomList", roomList);
+		// model.addAttribute("photoList", photoList);
 		return "redirect:/views/shareHouseModify.jsp";
 
 	}
@@ -231,9 +231,19 @@ public class ShareHouseController {
 	public String detailShareHouse(String shareHouseId, Model model) {
 		int id = Integer.parseInt(shareHouseId);
 		ShareHouse shareHouse = shareHouseService.find(id);
+		EssentialInfo essentialInfo = essentialInfoService.find(id);
+		ExtraInfo extraInfo = extraInfoService.find(id);
+		List<Room> roomList = roomService.find(id);
 		List<Review> reviews = reviewService.findByShareHouseId(id);
+		House house = houseService.find(shareHouse.getHouseId());
 
+		System.out.println(roomList);
+
+		model.addAttribute("house", house);
 		model.addAttribute("shareHouse", shareHouse);
+		model.addAttribute("essentialInfo", essentialInfo);
+		model.addAttribute("extraInfo", extraInfo);
+		model.addAttribute("roomList", roomList);
 		model.addAttribute("reviews", reviews);
 		return "/views/shareHouseDetail.jsp";
 	}
