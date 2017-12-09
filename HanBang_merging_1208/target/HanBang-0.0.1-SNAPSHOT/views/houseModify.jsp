@@ -14,14 +14,14 @@
 
 <%@ include file="/views/layout/header.jsp" %>
 
-<main>
+<main class="houseModify">
 	<section>
 		<h3>하우스 수정</h3>
 		<p>${house.houseName } 정보입니다.</p>
 		<form action="${ctx}/houseModify.do" method="POST">
 			<div>
 				<div>
-					<div id="map" style="width: 100%; height: 250px;"></div>
+					<div id="map" style="width: 100%; height: 280px;"></div>
 					<h4> 주소</h4>
 					<script type="text/javascript"
 						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=20a2231eb9d4b20ef7a68674b0d5aca3&libraries=services"></script>
@@ -29,7 +29,7 @@
 						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 						mapOption = {
 							center : new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-							level : 6
+							level : 5
 						};
 
 						var map = new daum.maps.Map(mapContainer, mapOption);

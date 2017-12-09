@@ -10,7 +10,7 @@
 		<result property="name" column="name" />
 		<result property="phoneNumber" column="phoneNumber" />
 		<result property="email" column="email" />
-		<result property="memberTypeId" column="membertype" />
+		<result property="memberTypeId" column="memberType" />
 	</resultMap>
 
 	<insert id="create" parameterType="Member">
@@ -21,7 +21,7 @@
 		#{memberTypeId})
 	</insert>
 
-	<select id="retriveAll" resultType="Member">
+	<select id="retriveAll" resultType="Member" resultMap="MemberMap">
 		SELECT MEMBERID, MEMBERTYPE,
 		NAME, PHONENUMBER
 		FROM MEMBER_TB
@@ -29,7 +29,7 @@
 
 	<select id="retrive" parameterType="String" resultType="Member">
 		SELECT
-		MEMBERID, PASSWORD, NAME, PHONENUMBER, EMAIL,
+		MEMBERID as id, PASSWORD, NAME, PHONENUMBER, EMAIL,
 		MEMBERTYPE as memberTypeId
 		FROM MEMBER_TB
 		WHERE memberId = #{id}
@@ -48,5 +48,13 @@
 		WHERE
 		MEMBERID = #{id}
 	</delete>
+	
+	<select id="retriveByMemberType" parameterType="int" resultMap="MemberMap">
+		SELECT
+		MEMBERID, PASSWORD, NAME, PHONENUMBER, EMAIL,
+		MEMBERTYPE as memberTypeId
+		FROM MEMBER_TB
+		WHERE memberType = #{memberTypeId}
+	</select>
 
 </mapper>

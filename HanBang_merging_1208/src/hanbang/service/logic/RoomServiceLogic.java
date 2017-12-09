@@ -40,14 +40,8 @@ public class RoomServiceLogic implements RoomService {
 	public List<Room> find(int shareHouseId) {
 
 		List<Room> rooms = store.retrive(shareHouseId);
-		for (int i = 0; i < rooms.size(); i++) {
-			Room room = new Room();
-			room = rooms.get(i);
-			List<ProvidedGood> providedGoods = prStore.retriveAll(room.getRoomId());
-			room.setProvidedGoods(providedGoods);
-			rooms.add(room);
-		}
-
+		List<ProvidedGood> providedGoods = prStore.retriveAll(rooms.get(0).getRoomId());
+		rooms.get(0).setProvidedGoods(providedGoods);
 		return rooms;
 	}
 

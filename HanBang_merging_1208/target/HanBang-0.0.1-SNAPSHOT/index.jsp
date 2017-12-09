@@ -43,7 +43,7 @@
 		<%@ include file="/views/layout/header.jsp"%>
 
 		<div class="searchShareHouse">
-			<a href="${ctx}/shareHouse/shareHouseList.do">하우스 살펴보기</a>
+			<a href="${ctx}/shareHouse/shareHouseList.do">하우스 전체보기</a>
 			<form action="searchShareHouse.do" method="post">
 				<div class="shareHouseGender">
 					<label><input type="radio" name="shareHouseGender">성별
@@ -52,7 +52,7 @@
 						전용</label>
 				</div>
 				<div class="searchBar">
-					<input type="text" placeholder="지역명, 대학교, 지하철역을 입력해 주세요.">
+					<input type="text" name = "searchWord" placeholder="지역명, 대학교, 지하철역을 입력해 주세요.">
 					<input type="submit" value="찾아보기">
 				</div>
 			</form>
@@ -64,96 +64,31 @@
 		<h3>추천 하우스</h3>
 		<p>단기간 내에 바로 입주 가능한 셰어하우스</p>
 		<ul class="shareHouseRecommend clear">
-			<%--
-          <c:forEach var="shareHouse" items="${shareHouseList}" end="">
-            <li>
-               <a href="${ctx}/shareHouseDetail.do">
-                  <div>
-                     <h4>${shareHouse.shareHouseTitle}</h4>
-                     <p>${shareHouse.shareHouseGender}</p>
-                     <div><img src="${ctx}/${shareHouse.shareHouseImage}" alt="셰어하우스"></div>
-                  </div>
-                  <div>
-                     <p>${shareHouse.shareHouseAddress}</p>
-                     <span>${shareHouse.shareHouseType}</span>
-                     <span>${shareHouse.shareHouseRoomEA}</span>
-                     <span>${shareHouse.shareHouseToiletEA}</span>
-                     <p>${shareHouse.shareHouseDeposit} / ${shareHouse.shareHouseMonthlyRent}</p>
-                  </div>
-               </a>
-            </li>
-         </c:forEach>
- --%>
-			<li><a href="#a">
-					<div>
-						<h4>셰어하우스타이틀</h4>
-						<p></p>
+	
+			<c:forEach var="shareHouse" items="${shareHouses }">
+				<li><a href="${ctx}/shareHouse/shareHouseDetail.do?shareHouseId=${shareHouse.shareHouseId}">
 						<div>
-							<img src="" alt="셰어하우스">
+							<h4>${shareHouse.title}</h4>
+							<p>${shareHouse.rooms[0].sex}</p>
+							<div>
+								<img src="/images/${shareHouse.photos[0].photo}">
+							</div>
 						</div>
-					</div>
-					<div>
-						<p>셰어하우스 주소</p>
-						<span>셰어하우스 타입</span> <span>셰어하우스룸개수</span> <span>셰어하우스화장실개수</span>
-						<p>보증금 / 월세</p>
-					</div>
-			</a></li>
-			<li><a href="#a">
-					<div>
-						<h4>셰어하우스타이틀</h4>
-						<p></p>
-						<div>
-							<img src="" alt="셰어하우스">
-						</div>
-					</div>
-					<div>
-						<p>셰어하우스 주소</p>
-						<span>셰어하우스 타입</span> <span>셰어하우스룸개수</span> <span>셰어하우스화장실개수</span>
-						<p>보증금 / 월세</p>
-					</div>
-			</a></li>
-			<li><a href="#a">
-					<div>
-						<h4>셰어하우스타이틀</h4>
-						<p></p>
-						<div>
-							<img src="" alt="셰어하우스">
-						</div>
-					</div>
-					<div>
-						<p>셰어하우스 주소</p>
-						<span>셰어하우스 타입</span> <span>셰어하우스룸개수</span> <span>셰어하우스화장실개수</span>
-						<p>보증금 / 월세</p>
-					</div>
-			</a></li>
-			<li><a href="#a">
-					<div>
-						<h4>셰어하우스타이틀</h4>
-						<p></p>
-						<div>
-							<img src="" alt="셰어하우스">
-						</div>
-					</div>
-					<div>
-						<p>셰어하우스 주소</p>
-						<span>셰어하우스 타입</span> <span>셰어하우스룸개수</span> <span>셰어하우스화장실개수</span>
-						<p>보증금 / 월세</p>
-					</div>
-			</a></li>
-			<li><a href="#a">
-					<div>
-						<h4>셰어하우스타이틀</h4>
-						<p></p>
-						<div>
-							<img src="" alt="셰어하우스">
-						</div>
-					</div>
-					<div>
-						<p>셰어하우스 주소</p>
-						<span>셰어하우스 타입</span> <span>셰어하우스룸개수</span> <span>셰어하우스화장실개수</span>
-						<p>보증금 / 월세</p>
-					</div>
-			</a></li>
+							<div>
+									<span>${shareHouse.essentialInfo.buildingType}</span>
+									<c:if test="${houses ne null }">
+										<c:forEach var="house" items="${houses }">
+											<c:if test="${shareHouse.houseId  eq house.houseId }">
+												<span>${house.rooms}</span>
+												<span>${house.bathrooms}</span>
+											</c:if>
+										</c:forEach>
+										</c:if>
+										<p>${shareHouse.rooms[0].deposit }/
+											${shareHouse.rooms[0].monthlyFee }</p>
+								</div>
+				</a></li>
+			</c:forEach>
 		</ul>
 	</section>
 	</main>

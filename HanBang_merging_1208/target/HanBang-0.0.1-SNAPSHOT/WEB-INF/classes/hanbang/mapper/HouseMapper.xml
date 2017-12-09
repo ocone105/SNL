@@ -17,7 +17,8 @@
 
 	<select id="retriveByMemberId" parameterType="String"
 		resultType="House">
-		SELECT houseId, ADDRESS, WHOLEAREA, BATHROOMS, ROOMS, HOUSENAME
+		SELECT houseId, ADDRESS, WHOLEAREA, BATHROOMS, ROOMS,
+		HOUSENAME
 		FROM HOUSE_TB
 		WHERE MEMBERID = #{memberId}
 	</select>
@@ -41,9 +42,15 @@
 		)
 	</select>
 
+	<select id="retriveAll" resultType="House">
+		SELECT houseId, ADDRESS, WHOLEAREA, BATHROOMS, ROOMS, houseName
+		FROM HOUSE_TB
+	</select>
+
 	<update id="update" parameterType="House">
 		UPDATE HOUSE_TB
-		SET ADDRESS = #{address} , WHOLEAREA = #{wholeArea} , BATHROOMS = #{bathrooms} ,
+		SET ADDRESS =
+		#{address} , WHOLEAREA = #{wholeArea} , BATHROOMS = #{bathrooms} ,
 		ROOMS= #{rooms} , HouseName = #{houseName}
 		WHERE HOUSEID = #{houseId}
 	</update>

@@ -205,8 +205,8 @@
 								type="text" name="availability"></label>
 						</div>
 						<div class="roomOption clear">
-							<label> <input type="checkbox" value="roomAirConditioner">
-								<span>에어컨</span>
+							<label> <input type="checkbox" name="providedGood"
+								value="roomAirConditioner"> <span>에어컨</span>
 							</label> <label> <input type="checkbox" name="providedGood"
 								value="roomDesk"> <span>책상</span>
 							</label> <label> <input type="checkbox" name="providedGood"

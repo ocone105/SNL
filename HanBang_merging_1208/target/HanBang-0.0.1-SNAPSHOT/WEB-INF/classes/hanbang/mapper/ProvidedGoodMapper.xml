@@ -32,8 +32,7 @@
 		FROM
 		providedGood_tb
 		WHERE
-		roomId =
-		#{roomId}
+		roomId = #{roomId}
 	</select>
 
 
@@ -49,15 +48,13 @@
 
 	<delete id="delete" parameterType="int">
 		DELETE FROM providedGood_tb
-		WHERE providedGoodId =
-		#{providedGoodId}
+		WHERE providedGoodId = #{providedGoodId}
 	</delete>
 
 	<delete id="deleteByRoom" parameterType="int">
 		DELETE FROM
 		providedGood_tb
-		WHERE roomId =
-		#{roomId}
+		WHERE roomId = #{roomId}
 	</delete>
 
 </mapper>

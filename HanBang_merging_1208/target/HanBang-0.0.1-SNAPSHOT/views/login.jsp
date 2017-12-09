@@ -15,7 +15,7 @@
 <a href="#header" class="skip">본문바로가기</a>
 
 <header id="header" class="loginHeader">
-	<h1><a href="${ctx}/index.jsp">한방</a></h1>
+	<h1><a href="${ctx}/index.do">한방</a></h1>
 	<nav>
 		<h2 class="hide">회원 메뉴</h2>
 		<ul>

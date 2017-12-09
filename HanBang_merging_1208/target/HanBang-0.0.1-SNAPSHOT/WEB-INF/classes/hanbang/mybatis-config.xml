@@ -41,6 +41,7 @@
 		<mapper resource="hanbang/mapper/ReviewAnswerMapper.xml" />
 		<mapper resource="hanbang/mapper/ShareHouseMapper.xml" />
 		<mapper resource="hanbang/mapper/EssentialInfoMapper.xml" />
+		<mapper resource="hanbang/mapper/ExtraInfoMapper.xml" />
 		<mapper resource="hanbang/mapper/PublicUsageMapper.xml" />
 		<mapper resource="hanbang/mapper/HouseMapper.xml" />
 		<mapper resource="hanbang/mapper/InterestShareHouseMapper.xml" />

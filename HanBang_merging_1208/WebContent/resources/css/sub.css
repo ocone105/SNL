@@ -45,11 +45,11 @@ main > section { margin:0 auto; width:800px;}
 .houseCreate > section,
 .houseModify > section { width:500px !important;}
 .houseMapView { overflow:hidden;}
-.houseMapView #map { height:300px;}
+.houseMapView #map { height:300px; background:yellow;}
 .houseMapView { position:relative; border:1px solid #e1ded9; border-radius:5px; box-sizing: border-box;}
 .houseMapView > div:nth-last-of-type(1) { z-index:1; position:absolute; left:0; bottom:0; padding:10px; box-sizing:border-box;}
 .houseMapView > div:nth-last-of-type(1) input { float:left; width:370px;}
-.houseMapView > div:nth-last-of-type(1) button { display:inline-block; float:left; padding:10px 20px; margin:5px 0 0 10px; box-sizing:border-box; background:#42a465; font-size: 15px; color:#fff; border-radius:5px;}
+.houseMapView > div:nth-last-of-type(1) a { display:inline-block; float:left; padding:10px 20px; margin:5px 0 0 10px; box-sizing:border-box; background:#42a465; font-size: 15px; color:#fff; border-radius:5px;}
 .houseMapView + div { clear:both; padding:10px; box-sizing:border-box; margin:20px 0; background:#f5f5f5; border:1px solid #e1ded9; border-radius:5px;}
 .houseMapView + div label { padding-left:10px; font-size:16px; line-height:40px;}
 
@@ -70,9 +70,7 @@ main > section { margin:0 auto; width:800px;}
 .memberModifySection form > div:first-child + div label { padding-left:10px; font-size:16px; line-height:40px;}
 .houseOwned { padding:40px 0; box-sizing:border-box; margin:50px 0 10px; border-top:1px dashed #e1ded9; border-bottom:1px dashed #e1ded9;}
 .houseOwned h4 { padding-bottom:20px; font-size:25px; font-weight:normal; text-align:center;}
-
-.houseOwned > ul > li { padding:20px; box-sizing:border-box; margin-bottom:20px; background:#f5f5f5; border-radius:5px;}
-
+.houseOwned > ul > li { padding:20px; box-sizing:border-box; marign-bottom:20px; background:#f5f5f5; border-radius:5px;}
 .houseOwned > ul > li > ul { float:left; padding-right:20px; box-sizing:border-box; width:80%;}
 .houseOwned > ul > li > ul li { font-size:17px; line-height:30px;}
 .houseOwned > ul > li > div { float:left; width:20%;}
@@ -80,7 +78,6 @@ main > section { margin:0 auto; width:800px;}
 .houseOwned > ul > li > div a:hover { box-shadow:0 0 5px #42a465;}
 .houseOwned > ul > li > div button { padding:5px 0;}
 .houseOwned > ul > li > div button:hover { box-shadow:0 0 5px #555;}
-
 .houseOwned > ul + a { clear:both; display:block; padding:20px 0; box-sizing:border-box; margin:30px 100px 0; border:2px solid #e1ded9; border-radius:2px; font-size:20px; text-align:center; color:#555;}
 .houseOwned > ul + a span { padding-right:10px; font-size:25px; font-weight:bold; color:red;}
 .houseOwned > ul + a:hover { border:2px solid #42a465; color:#42a465;}
@@ -112,19 +109,46 @@ main > section { margin:0 auto; width:800px;}
 .questionList li > a span button.reviewWriteBtn { background:orange;}
 .questionList li > a span button.reviewWriteBtn:hover { background:yellowgreen;}
 
-/*questionDetail & reviewDetail*/
-.questionListText { padding:20px; box-sizing:border-box; margin-top:10px; background:#f5f5f5; border-radius:5px;}
-.questionlistHead { position:relative; padding-bottom:15px; box-sizing:border-box; margin-bottom:15px; border-bottom:1px solid #e1ded9;}
-.questionlistHead h4 { display:inline-block; padding-right:10px; font-size:20px;}
-.questionlistHead > span { font-size:15px;}
-.questionlistHead > span:before { content:" | ";}
-.questionInfo { position:absolute; right:10px; bottom:0; padding:10px; box-sizing:border-box; background:#e1ded9; border-radius:5px;}
-article { font-size: 14px; padding:20px; box-sizing:border-box; min-height:100px; border-bottom:1px dashed #e1ded9;}
-.answer ul li { padding:20px; box-sizing:border-box; border-bottom:1px dashed #e1ded9;}
-.answerProvider:before { content:"A."; font-size:30px;}
-.answerProvider { text-indent:50px; box-sizing:border-box;}
-.answerUser:before { content:"Q."; font-size:30px;}
+/*questionCreate*/
+.questionCreate > section { width:500px;}
+.questionCreate h4 { padding:20px; font-size:20px; line-height:25px;}
+.questionCreate form > div { padding:20px; box-sizing:border-box; background:#f5f5f5; border-radius:5px;}
+.questionCreate form > div > div > label { padding-left:10px; font-size:16px; line-height:40px;}
+.questionCreate form > div > div > label > img { width:30px;}
+.questionCreate form > div > div { padding-bottom:20px; box-sizing:border-box; margin-bottom:20px; border-bottom:1px dashed #e1ded9;}
+.questionCreate form > div + input { margin-top:30px;}
 
+/*questionDetail & reviewDetail*/
+.questionListText,
+.reviewListText { padding:20px; box-sizing:border-box; margin-top:30px; background:#f5f5f5; border-radius:5px;}
+.questionListHead,
+.reviewListHead { position:relative; padding-bottom:20px; box-sizing:border-box; margin-bottom:30px; border-bottom:1px solid #e1ded9;}
+.questionListHead h4,
+.reviewListHead h4 { padding:20px; font-size:20px;}
+.reviewListHead p { padding-left:30px; font-size:15px; line-height:20px;}
+.questionInfo { position:absolute; right:10px; top:0; padding:10px; box-sizing:border-box; background:#e1ded9; border-radius:5px;}
+.questionListText article,
+.reviewListText article { padding:20px; box-sizing:border-box; width:600px; min-height:100px; background:#fff; border-radius:5px; font-size:14px;}
+.questionListText article div,
+.reviewListText article div { overflow:hidden; margin-top:30px; height:300px; text-align:center;}
+.questionListText article div img,
+.reviewListText article div img { width:100%;}
+.reviewListHead + article { width:100%;}
+.reviewListHead + article + div { padding-top:30px; box-sizing:border-box; margin-top:50px; border-top:1px dashed #e1ded9;}
+.answer ul li { padding:20px; box-sizing:border-box; margin:10px 0; width:600px; min-height:100px; background:#fff; border-radius:5px; font-size:14px;}
+.answerProvider:before { content:"A."; font-size:30px;}
+.answerRedactor,
+.answerProvider { margin-left:160px !important;}
+.answerUser:before { content:"Q."; font-size:30px;}
+article p + p,
+.answer ul li p + p,
+.reviewListHead + article + .answer ul li p + p { position:relative; left:350px; display:inline-block; padding-top:10px;}
+.answerRedactor p,
+.answerProvider p,
+.answerUser p { text-indent:50px;}
+.reviewListHead + article + .answer ul li:before { content:"";}
+.answerRedactor p:first-child,
+.reviewListHead + article + .answer ul li.answerUser p:first-child { text-indent:0 !important;}
 .answer form { padding:10px; box-sizing:border-box; background:#fff; border:1px solid #e1ded9; border-radius:5px;}
 .answer form textarea { float:left; padding:10px; width:90%; height:100px; border:1px solid #e1ded9; box-sizing:border-box; border-radius:5px;}
 .answer form > div { float:left; padding-left:20px; box-sizing:border-box; width:10%;}
@@ -132,15 +156,13 @@ article { font-size: 14px; padding:20px; box-sizing:border-box; min-height:100px
 .answer form > div button { padding:10px 0;}
 .answer form > div button:hover { background:red;}
 
-
-
 /*shareHouseCreate & Modify*/
 .shareHouseCreate h4 { font-size:25px;}
 .shareHouseCreate > div:first-of-type > div { padding:20px; box-sizing:border-box; margin-bottom:20px;background:#f5f5f5; border:1px solid #e1ded9; border-radius:5px;}
 .shareHouseCreate > input { margin:30px 0 10px;}
 .houseInfo { background:#f5f5f5; border:1px solid #e1ded9; border-radius:5px;}
 .shareHouseMapView { overflow:hidden;}
-.shareHouseMapView #map { height:300px; background:yellow;}
+.shareHouseMapView #map { height:400px; background:yellow;}
 .shareHouseMapView { position:relative; float:left; margin-top:20px; width:60%; border:1px solid #e1ded9; border-radius:5px; box-sizing: border-box;}
 .shareHouseMapView > div:nth-last-of-type(1) { z-index:1; position:absolute; left:0; bottom:0; padding:10px; box-sizing:border-box;}
 .shareHouseMapView > div:nth-last-of-type(1) input { float:left; width:320px;}
@@ -159,6 +181,53 @@ article { font-size: 14px; padding:20px; box-sizing:border-box; min-height:100px
 .roomInfo > div > div:last-child > div + div { padding:25px 0 0 20px; box-sizing:border-box;}
 .roomInfo button { margin-top:20px;}
 
+/*shareHouseDetail*/
+.shareHouseDetail { padding:0;}
+.device { position:relative; height:400px;}
+.device .arrow_left { display:none; z-index:1; position:absolute; left:15px; top:50%; margin-top:-15px; width:17px; height:30px; background:url(../images/buico/arrows.png) no-repeat left top;}
+.device:hover .arrow_left { display:block;}
+.device .arrow_right { display:none; z-index:1; position:absolute; right:15px; top:50%; margin-top:-15px; width:17px; height:30px; background:url(../images/buico/arrows.png) no-repeat left bottom;}
+.device:hover .arrow_right { display:block;}
+.swiper-container { position:absolute; left:0; top:0; z-index:1; overflow:hidden; position:relative; width:100%; height:100%;}
+.swiper-wrapper { position:relative; width:100%; transition-property:transform, left, top; transition-duration:0s; transform:translate3d(0px,0,0); transition-timing-function:ease;}
+.swiper-free-mode > .swiper-wrapper { margin:0 auto; transition-timing-function:ease-out;}
+.swiper-slide { float:left; background:#fff;}
+.swiper-slide img { width:100%;}
+.swiper-pagination-switch { display:inline-block; margin:0 5px; width:13px; height:13px; background:#fff; border-radius:13px; box-shadow:0px 1px 2px #555 inset; cursor:pointer;}
+.swiper-pagination-switch:hover,
+.swiper-active-switch { background:#a3a3a3;}
+.pagination { z-index:1; position:absolute; left:0; bottom:30px; width:100%; text-align:center;}
+.pagination + button { position:absolute; right:50px; top:30px;}
+.device .shareHouseTitle { position:absolute; left:50%; top:100px; margin-left:-200px; width:400px; z-index:2;}
+.shareHouseTitle { text-align:center;}
+.shareHouseTitle h3 { font-size:50px; text-shadow:0px 1px 2px #555; color:#fff;}
+.shareHouseTitle div { margin:30px 0;}
+.shareHouseTitle p { display:inline-block; padding:8px 20px; box-sizing:border-box; border-radius:5px; font-size:15px; color:#000; box-shadow:0px 1px 2px #555;}
+
+
+.shareHouseDetail section { padding:10px 0 100px 0; width:700px;}
+.shareHouseDetail section h4 { padding:30px 0; box-sizing:border-box; margin-top:150px; border-top:1px dashed #e1ded9; font-size:25px; text-align:center;}
+
+article.shareHouseInfoText h4 { border:none; margin-top:30px;}
+.shareHouseInfoText p { padding:30px; box-sizing:border-box; min-height:200px; border:1px solid #e1ded9; border-radius:5px; font-size:16px;}
+
+.infoBox { padding:20px; box-sizing:border-box; text-align:center; background:#f2f2f2; border-radius:5px;}
+.infoBox > li { padding:5px 0; font-size:20px; text-align:left;}
+
+article ul li ul { padding:20px; box-sizing:border-box; margin:10px 0; background:#fff; border:1px solid #e1ded9; border-radius:5px;}
+article ul li ul li { float:left; padding:10px 0; box-sizing:border-box; margin:5px; width:129px; background:#42a465; border-radius:5px; font-size:15px; font-weight:bold; color:#fff; text-align:center;}
+
+.paging { text-align:center;}
+.paging ul { padding-top:20px;}
+.paging ul li { float:left; width:30px;}
+.paging ul li a { display:block; padding:3px;}
+.paging ul li a:hover { background:#42a465; border-radius:50px; color:#fff;}
+
+.shareHouseDetail aside { z-index:3; width:250px;}
+.shareHouseDetail aside div { height:200px; background:yellow;}
+
+
+
 /*shareHouseList*/
 main.shareHouseListMain { padding:0;}
 main.shareHouseListMain > section { width:100%;}
@@ -166,7 +235,7 @@ main.shareHouseListMain > section { width:100%;}
 .shareHouseListMapView .searchBar { z-index:100; position:relative; left:50px; top:50px; border-radius:2px; box-shadow:0 0 10px #555;}
 .shareHouseListMapView .searchBar input[type="text"] { padding:0; margin-left:3px; width:300px;}
 .shareHouseListMapView .searchBar input[type="submit"] { marign:0;}
-.shareHouseListMapView #map { position:absolute; left:0; top:0; width:100%; height:900px;}
+.shareHouseListMapView #map { position:absolute; left:0; top:0; width:100%; height:900px; background:yellow;}
 .shareHouseList { overflow:auto; float:left; padding:20px; box-sizing:border-box; width:30%; height:900px; background:#fff;}
 .shareHouseList h3 { padding-bottom:20px; font-size:25px;}
 .shareHouseList ul li { margin:10px 0 20px 0;}
@@ -222,3 +291,5 @@ aside a:hover { background:#42a465;}
 
 /*etc*/
 input { padding:5px 0; margin:3px 0; border-radius:5px;}
+
+

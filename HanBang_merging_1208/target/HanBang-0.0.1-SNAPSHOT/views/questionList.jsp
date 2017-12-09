@@ -32,6 +32,7 @@
 								href="detailQuestion.do?questionId=${question.questionId }">
 									문의id : ${question.questionId }</a></span>
 						</div>
+						
 						<div>
 							<article>
 								<p><a href="detailQuestion.do?questionId=${question.questionId }"> * 문의내용 : ${question.questionContent}</a></p>

@@ -15,7 +15,7 @@
 <%@ include file="/views/layout/header.jsp" %>
 
 <main>
-	<section>
+	<section class="memberModifySection">
 		<h3>회원 정보 수정</h3>
 		<p>[${name }]님의 정보 입니다.</p>
 		<form action="${ctx}/modifyMember.do" method="POST">

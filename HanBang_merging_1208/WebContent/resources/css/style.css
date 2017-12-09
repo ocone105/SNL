@@ -24,23 +24,31 @@ nav ul li a { font-size:15px; color:#fff;}
 nav ul li a:hover { font-weight:bold;}
 
 /*main*/
-main { clear:both; padding:80px 0 100px 0; box-sizing:border-box;}
-main h3 { padding-bottom:15px; font-size:40px; text-align:center; color:#000;}
-main h3 + p { padding-bottom:30px; box-sizing:border-box; font-size:12px; text-align:center; color:#555;}
-
+main { clear:both; padding:80px 0 100px 0; box-sizing:border-box; min-height:800px;}
+main h3 { padding-bottom:20px; font-size:40px; text-align:center; color:#000;}
+main h3 + p { padding-bottom:30px; box-sizing:border-box; font-size:15px; text-align:center; color:#555;}
+form { margin-top:30px;}
 /*footer*/
-footer { padding:30px 0; box-sizing:border-box; background:#362d31; text-align:center; color:#6e6567;}
+footer { padding:30px 0; box-sizing:border-box; margin-top:100px; background:#362d31; text-align:center; color:#6e6567;}
 
 /*button*/
 input[type="submit"] { padding:15px 0; box-sizing:border-box; width:100%; background:#3f7f95; font-size:15px; color:#fff; border-radius:5px;}
 input[type="submit"]:hover { background:#42a465;}
 button { padding:15px 0; box-sizing:border-box; width:100%; background:#555; font-size:15px; color:#fff; border-radius:5px; cursor:pointer;}
 
+.reportBtn { padding:2px 0; box-sizing:border-box; width:80px; background:orange; font-size:13px;}
+.reportBtn:hover { background:red;}
+
+.interestShareHouseCreateBtnOn:after { content:"♥"; color:red;}
+.interestShareHouseCreateBtnOff:after { content:"♡"; color:red;}
+.interestShareHouseCreateBtnOn,
+.interestShareHouseCreateBtnOff { padding:0; box-sizing:border-box; width:auto; background:none; border-radius:0; cursor:pointer;}
+
 /*radio & checkBox*/
 input[type="radio"],
 input[type="checkbox"] { -webkit-appearance:none; -moz-appearance:none; -o-appearance:none; -ms-appearance:none; cursor:pointer; text-align:center;}
 input[type="radio"] + span,
-input[type="checkbox"] + span { display:block; padding:10px 0; margin:0 5px; background:#fff; border:2px solid #cbcbcb; box-sizing:border-box; border-radius:5px; font-size:20px; font-weight:bold; color:#cbcbcb; text-align:center;}
+input[type="checkbox"] + span { display:block; padding:10px 0; box-sizing:border-box; margin:0 5px; background:#fff; border:2px solid #e1ded9; border-radius:5px; font-size:20px; font-weight:bold; color:#e1ded9; text-align:center;}
 input[type="radio"]:checked + span,
 input[type="checkbox"]:checked + span { border:2px solid #42a465; color:#42a465;}
 
@@ -55,4 +63,6 @@ p.unisex { background:yellowgreen;}
 
 textarea { height:300px; border-radius:5px;}
 
-.fileUpLoad p { padding:50px 0 20px; margin-top:50px; border-top:1px dashed #cbcbcb; font-size:18px; text-align:center;}
+.fileUpLoad p { padding:50px 0 20px; margin-top:50px; border-top:1px dashed #e1ded9; font-size:18px; text-align:center;}
+
+

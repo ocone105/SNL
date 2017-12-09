@@ -18,7 +18,7 @@
 	<section>
 		<button type="button" name="reportBtn">신고</button>
 		<div>
-			<h3>${shareHouse.Title}</h3>
+			<h3>${shareHouse.title}</h3>
 			<div>
 				<button type="button" name="interestShareHouseCreateBtn">
 					<span class="hide">등록</span>
@@ -27,7 +27,7 @@
 					<span class="hide">삭제</span>
 				</button>
 			</div>
-			<span>${shareHouse.Title}</span>
+			<span>${shareHouse.title}</span>
 			<ul>
 				<c:forEach var="photo" items="${shareHouse.photos }">
 					<li><img src="${photo.photo}" alt="셰어하우스 이미지"></li>
@@ -76,21 +76,31 @@
 		</div>
 		<div>
 			<h4>후기</h4>
-			<ul id="reviewList">
-				<li><span>셰어하우스 제목</span> <span>작성자ID</span> <span>작성 날짜</span>
+				
+			<c:if test="${reviews eq null }">
+				<h4>등록된 후기가 없습니다.</h4>
+			</c:if>
+			<%-- 
+			<c:if test="${reviews ne null }">
+				<ul id="reviewList">
+				<li><span> 제목</span> <span>작성자ID</span> <span>작성 날짜</span>
 				</li>
-				<c:forEach var="review" items="reviewList">
-					<li><a href="${ctx}/reviewDetail.do"> <span>${review.shareHouseTitle }</span>
-							<span>${review.authorId}</span> <span>${review.writeDate }</span>
+				<c:forEach var="review" items="reviews">
+					<li><a href="${ctx}/reviewDetail.do"> <span>${review.title }</span>
+							<span>${review.writerId}</span> <span>${review.date }</span>
 					</a></li>
 				</c:forEach>
 			</ul>
+			</c:if>
+			
 			<!-- 후기 페이징 부분 -->
+		
 			<ul>
 				<c:forEach var="pageNumber" items="paging" end="">
 					<li><a href="#a">${pageNumber.pageNumber}</a></li>
 				</c:forEach>
 			</ul>
+			--%>
 		</div>
 	</section>
 	<aside>
