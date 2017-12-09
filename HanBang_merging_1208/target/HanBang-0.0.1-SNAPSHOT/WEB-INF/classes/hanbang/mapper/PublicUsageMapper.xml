@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hanbang.store.mapper.PublicUsageMapper">
+
+
+	<insert id="create" parameterType="PublicUsage">
+		<selectKey keyProperty="publicUsageId" resultType="Integer"
+			order="BEFORE">
+			SELECT publicUsageId_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO PUBLICUSAGE_TB(ESSENTIALINFOID, PUBLICUSAGEID,
+		PUBLICUSAGE)
+		VALUES(#{essentialInfoId}, #{publicUsageId},
+		#{publicUsage})
+	</insert>
+
+	<select id="retriveAll" resultType="PublicUsage" parameterType="int">
+		SELECT PUBLICUSAGEID, ESSENTIALINFOID, PUBLICUSAGE
+		FROM PUBLICUSAGE_TB
+		WHERE
+		ESSENTIALINFOID = #{essentialInfoId}
+	</select>
+
+	<select id="retrive" resultType="PublicUsage" parameterType="int">
+		SELECT PUBLICUSAGEID, ESSENTIALINFOID, PUBLICUSAGE
+		FROM PUBLICUSAGE_TB
+		WHERE
+		PUBLICUSAGEID = #{publicUsageId}
+	</select>
+
+	<delete id="deleteByHouseId" parameterType="int">
+		DELETE FROM
+		PUBLICUSAGE_TB
+		WHERE ESSENTIALINFOID = #{essentialInfoId}
+	</delete>
+</mapper>
+
+
+	

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hanbang.store.mapper.RoomMapper">
+	<insert id="create" parameterType="Room">
+		<selectKey keyProperty="roomId" resultType="int" order="BEFORE">
+			SELECT ROOMID_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO
+		room_tb(roomId,
+		shareHouseId,
+		sex, roomArea, bathroom,
+		deposit,
+		monthlyFee,
+		availability)
+		VALUES(#{roomId}, #{shareHouseId},
+		#{sex}, #{roomArea},
+		#{bathroom}, #{deposit},
+		#{monthlyFee},
+		#{availability})
+	</insert>
+
+	<update id="update" parameterType="Room">
+		UPDATE room_tb
+		SET
+		sex = #{sex},
+		roomArea = #{roomArea},
+		bathroom = #{bathroom}, deposit = #{deposit},
+		monthlyFee =
+		#{monthlyFee},
+		availability = #{availability}
+		WHERE roomId =
+		#{roomId}
+	</update>
+
+	<select id="retrive" parameterType="int" resultType="Room">
+		SELECT
+		roomId, shareHouseId,
+		sex, roomArea, bathroom,
+		deposit, monthlyFee,
+		availability
+		FROM room_tb
+		WHERE
+		shareHouseId = #{shareHouseId}
+	</select>
+
+	<delete id="deleteByShareHouse" parameterType="int">
+		DELETE FROM
+		room_tb
+		WHERE shareHouseId = #{shareHouseId}
+	</delete>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+		room_tb
+		WHERE roomId
+		= #{roomId}
+	</delete>
+</mapper>

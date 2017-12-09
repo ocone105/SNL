@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="hanbang.store.mapper.ReviewAnswerMapper">
+	
+	<resultMap type="Answer" id="answerMap">
+		<id property="answerId" column="review_answerId"/>
+		<result property="quesOrReviewId" column="reviewId"/>
+		<result property="content" column="review_answerContent"/>
+		<result property="date" column="review_answerDate"/>
+	</resultMap>
+	
+	<sql id="selectAnswer">
+		SELECT review_answerId, reviewId, writerId, 
+				review_answerContent, review_answerDate
+		FROM reviewAnswer_tb
+	</sql>
+	
+	<insert id="create" parameterType="Answer">
+		<selectKey keyProperty="answerId" resultType="Integer" order="BEFORE">
+			SELECT review_answerId_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO reviewAnswer_tb(review_answerId, reviewId, writerId, 
+									review_answerContent, review_answerDate, typeId)
+		VALUES(#{answerId}, #{quesOrReviewId}, #{writerId}, #{content}, sysdate, #{typeId})
+	</insert>
+	
+	<select id="retrieveAll" parameterType="Integer" resultMap="answerMap">
+		<include refid="selectAnswer"/>
+		WHERE reviewId = #{reviewId}
+	</select>
+	
+	<select id="retrieveByAnswerId" parameterType="Integer" resultMap="answerMap">
+		<include refid="selectAnswer"/>
+		WHERE review_answerId = #{answerId}
+	</select>
+	
+	
+	<update id="update" parameterType="Answer">
+		UPDATE reviewAnswer_tb
+		SET review_answerContent = #{content}, review_answerDate = sysdate
+		WHERE review_answerId = #{answerId}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM reviewAnswer_tb
+		WHERE writerId = #{writerId}
+	</delete>
+	
+	<delete id="deleteByReviewId" parameterType="Integer">
+		DELETE FROM reviewAnswer_tb
+		WHERE reviewId = #{quesOrReviewId}
+	</delete>
+	
+	<delete id="deleteByAnswerId" parameterType="Integer">
+		DELETE FROM reviewAnswer_tb
+		WHERE review_answerId = #{answerId}
+	</delete>
+	
+</mapper>
+

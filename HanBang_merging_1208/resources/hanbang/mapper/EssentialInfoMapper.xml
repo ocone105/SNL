@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hanbang.store.mapper.EssentialInfoMapper">
+
+	<insert id="create" parameterType="EssentialInfo">
+		<selectKey keyProperty="essentialInfoId" resultType="int"
+			order="BEFORE">
+			SELECT ESSENTIALINFOID_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO
+		essentialInfo_tb(essentialInfoId, shareHouseId,
+		floorTotalFloor, parking,
+		lift,
+		buildingType)
+		VALUES(#{essentialInfoId},
+		#{shareHouseId},
+		#{floorTotalFloor}, #{parking},
+		#{lift},
+		#{buildingType})
+	</insert>
+
+	<update id="update" parameterType="EssentialInfo">
+		UPDATE essentialInfo_tb
+		SET
+		floorTotalFloor = #{floorTotalFloor}, parking = #{parking},
+		lift =
+		#{lift}, buildingType =
+		#{buildingType}
+		WHERE shareHouseId =
+		#{shareHouseId}
+	</update>
+
+	<select id="retrive" parameterType="int" resultType="EssentialInfo">
+		SELECT
+		essentialInfoId, shareHouseId, floorTotalFloor, parking,
+		lift,
+		buildingType
+		FROM
+		essentialInfo_tb
+		WHERE shareHouseId = #{shareHouseId}
+	</select>
+
+	<delete id="deleteByShareHouse" parameterType="int">
+		DELETE FROM
+		essentialInfo_tb
+		WHERE shareHouseId = #{shareHouseId}
+	</delete>
+
+</mapper>

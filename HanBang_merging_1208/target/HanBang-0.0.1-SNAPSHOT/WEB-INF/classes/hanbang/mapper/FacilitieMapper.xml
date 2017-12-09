@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hanbang.store.mapper.FacilitieMapper">
+
+	<insert id="create" parameterType="Facilitie">
+		<selectKey keyProperty="facilitieId" resultType="int" order="BEFORE">
+			SELECT
+			facilitieId_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO
+		facilitie_tb(facilitieId, extraInfoId, facilitie)
+		VALUES(#{facilitieId}, #{extraInfoId}, #{facilitie})
+	</insert>
+
+	<update id="update" parameterType="Facilitie">
+		UPDATE facilitie_tb
+		SET
+		facilitie = #{facilitie}
+		WHERE extraInfoId = #{extraInfoId} AND
+		facilitieId = #{facilitieId}
+	</update>
+
+	<select id="retriveAll" parameterType="int" resultType="Facilitie">
+		SELECT
+		extraInfoId, facilitieId, facilitie
+		FROM
+		facilitie_tb
+		WHERE
+		extraInfoId
+		=
+		#{extraInfoId}
+	</select>
+
+	<select id="retrive" parameterType="int" resultType="Facilitie">
+		SELECT
+		extraInfoId, facilitiesId, facilities
+		FROM
+		facilities_tb
+		WHERE
+		facilitiesId
+		= #{facilitiesId}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM facilities_tb
+		WHERE facilitiesId =
+		#{facilitiesId}
+	</delete>
+
+	<delete id="deleteByExtraInfo" parameterType="int">
+		DELETE FROM
+		facilities_tb
+		WHERE extraInfoId =
+		#{extraInfoId}
+	</delete>
+
+</mapper>

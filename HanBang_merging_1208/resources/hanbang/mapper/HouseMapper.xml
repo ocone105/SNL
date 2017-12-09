@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hanbang.store.mapper.HouseMapper">
+
+	<insert id="create" parameterType="House">
+		<selectKey keyProperty="houseId" resultType="Integer" order="BEFORE">
+			SELECT houseId_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO HOUSE_TB(houseId, address, wholeArea, bathrooms, rooms,
+		memberId, houseName)
+		VALUES (#{houseId}, #{address}, #{wholeArea},
+		#{bathrooms}, #{rooms}, #{memberId} , #{houseName})
+	</insert>
+
+	<select id="retriveByMemberId" parameterType="String"
+		resultType="House">
+		SELECT houseId, ADDRESS, WHOLEAREA, BATHROOMS, ROOMS,
+		HOUSENAME
+		FROM HOUSE_TB
+		WHERE MEMBERID = #{memberId}
+	</select>
+
+	<select id="retriveMyHouse" parameterType="int" resultType="House">
+		SELECT houseId, ADDRESS, WHOLEAREA, BATHROOMS, ROOMS , HOUSENAME
+		FROM
+		HOUSE_TB
+		WHERE houseId = #{houseId}
+	</select>
+
+	<select id="retrive" parameterType="int" resultType="House">
+		SELECT
+		HOUSEID, ADDRESS, WHOLEAREA, BATHROOMS, ROOMS, HouseName
+		FROM HOUSE_TB
+		WHERE HOUSEID = (SELECT HOUSEID
+		FROM sharehouse_tb
+		WHERE
+		houseId =
+		#{houseId}
+		)
+	</select>
+
+	<select id="retriveAll" resultType="House">
+		SELECT houseId, ADDRESS, WHOLEAREA, BATHROOMS, ROOMS, houseName
+		FROM HOUSE_TB
+	</select>
+
+	<update id="update" parameterType="House">
+		UPDATE HOUSE_TB
+		SET ADDRESS =
+		#{address} , WHOLEAREA = #{wholeArea} , BATHROOMS = #{bathrooms} ,
+		ROOMS= #{rooms} , HouseName = #{houseName}
+		WHERE HOUSEID = #{houseId}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+		HOUSE_TB
+		WHERE
+		HOUSEID = #{houseId}
+	</delete>
+
+	<delete id="deleteByMemberId" parameterType="String">
+		DELETE FROM
+		HOUSE_TB
+		WHERE MEMBERID = #{memberId}
+	</delete>
+
+
+</mapper>

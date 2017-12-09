@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="hanbang.store.mapper.QuestionAnswerMapper">
+
+	<resultMap type="Answer" id="answerMap">
+		<id property="answerId" column="question_answerId"/>
+		<result property="quesOrReviewId" column="questionId"/>
+		<result property="content" column="question_answerContent"/>
+		<result property="date" column="question_answerDate"/>
+	</resultMap>
+	
+	<sql id="selectAnswer">
+		SELECT question_answerId, questionId, writerId, 
+				question_answerContent, question_answerDate
+		FROM questionAnswer_tb
+	</sql>
+	
+	<insert id="create" parameterType="Answer">
+	<selectKey keyProperty="answerId" resultType="Integer" order="BEFORE">
+		SELECT question_answerId_seq.nextval FROM dual
+	</selectKey>
+		INSERT INTO questionAnswer_tb(question_answerId, questionId, writerId, 
+									  question_answerContent, question_answerDate, typeId)
+		VALUES(#{answerId}, #{quesOrReviewId}, #{writerId}, #{content}, sysdate, #{typeId})
+	</insert>
+	
+	<select id="retrieveAll" parameterType="Integer" resultMap="answerMap">
+		<include refid="selectAnswer"/>
+		WHERE questionId = #{questionId}
+	</select>
+	
+	<select id="retrieveByAnswerId" parameterType="Integer" resultMap="answerMap">
+		<include refid="selectAnswer"/>
+		WHERE question_answerId = #{answerId}
+	</select>
+	
+	<update id="update" parameterType="Answer">
+		UPDATE questionAnswer_tb
+		SET question_answerContent = #{content}, question_answerDate = sysdate
+		WHERE question_answerId = #{answerId}
+	</update>
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM questionAnswer_tb
+		WHERE writerId = #{writerId}
+	</delete>
+	
+	<delete id="deleteByQuestionId" parameterType="Integer">
+		DELETE FROM questionAnswer_tb
+		WHERE questionId = #{quesOrReviewId}
+	</delete>
+	
+	<delete id="deleteByAnswerId" parameterType="Integer">
+		DELETE FROM questionAnswer_tb
+		WHERE question_answerId = #{answerId}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="hanbang.store.mapper.QuestionMapper">
+
+	<sql id="selectQuestion">
+		SELECT questionId, writerId, shareHouseId, questionDate, phoneNumber, 
+				schedule, questionContent
+		FROM question_tb
+	</sql>
+
+	<insert id="create" parameterType="Question">
+	<selectKey keyProperty="questionId" resultType="Integer" order="BEFORE">
+		SELECT QUESTIONID_seq.nextval FROM dual
+	</selectKey>
+		INSERT INTO question_tb(questionId, writerId, shareHouseId, questionDate, phoneNumber, schedule, questionContent)
+		VALUES(#{questionId}, #{writerId}, #{shareHouseId}, sysdate, #{phoneNumber}, #{schedule, jdbcType=VARCHAR}, #{questionContent})
+	</insert>
+	
+	<select id="retriveByMemberId" parameterType="String" resultType="Question">
+		<include refid="selectQuestion"/>
+		WHERE writerId = #{writerId}
+	</select>
+	 
+	<select id="retriveByShareHouseId" parameterType="int" resultType="Question">
+		<include refid="selectQuestion"/>
+		WHERE shareHouseId = #{shareHouseId}
+	</select>
+	
+	<select id="retrive" parameterType="int" resultType="Question">
+		<include refid="selectQuestion"/>
+		WHERE questionId = #{questionId}
+	</select>
+	
+	<update id="update" parameterType="Question">
+		UPDATE question_tb
+		SET questionDate = sysdate, phoneNumber = #{phoneNumber}, schedule = #{schedule}, 
+			questionContent = #{questionContent}
+		WHERE questionId = #{questionId}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM question_tb
+		WHERE questionId = #{questionId}
+	</delete>
+	
+	<delete id="deleteByMemberId" parameterType="String">
+		DELETE FROM question_tb
+		WHERE writerId = #{writerId}
+	</delete>
+	
+	<delete id="deleteByShareHouse" parameterType="int">
+		DELETE FROM question_tb
+		WHERE shareHouseId = #{shareHouseId}
+	</delete>
+	
+</mapper>
