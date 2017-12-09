@@ -25,24 +25,25 @@
 			<c:forEach var="user" items="${members }">
 				<div>
 					<div>
-						<span>${user.id}</span>
+						<span>${user.id}</span> <span> </span> <span> </span>
 					</div>
 				</div>
 				<div>
 					<div>
-						<h4>[${user.id}]님의 정보</h4>
+						<h4>[${user.id}]님의 후기</h4>
 						<ul>
 							<c:forEach var="review" items="${reviews }">
-								<li><a href="${ctx}/review/detailReview.do?reviewId=${review.reviewId }"> <span>${review.title}</span>
-										<span>${review.date}</span>
+								<li><a
+									href="${ctx}/review/detailReview.do?reviewId=${review.reviewId }">
+										<span>${review.title}</span> <span>${review.date}</span>
 								</a></li>
 
 							</c:forEach>
 
 						</ul>
+						<button type="button" name="userDeleteBtn">삭제</button>
 						<a href="${ctx}/adminFindMember.do?memberId=${user.id}">[${user.id}]님의
 							정보 더보기</a> <a href="${ctx }/removeMember.do?memberId=${user.id }">
-							<button type="button" name="userDeleteBtn">삭제</button>
 						</a>
 					</div>
 				</div>

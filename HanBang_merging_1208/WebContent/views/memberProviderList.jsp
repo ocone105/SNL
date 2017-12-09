@@ -24,27 +24,34 @@
 		<div class="detail">
 
 			<c:forEach var="provider" items="${members }">
+			
 				<div>
 					<div>
-						<span>${provider.id }</span> <span> </span> <span> </span>
+						<span>${provider.id }</span> 
+						<span><c:forEach var="m" items="${map }">
+								<c:if test="${m.key eq provider.id }"> 
+								 ${m.value } 
+								 </c:if>
+								 </c:forEach></span>
+								 <span> </span>
 					</div>
 				</div>
 				<div>
 					<div>
-						<h4>사업자 [${provider.id}]님의 정보</h4>
+						<h4>[${provider.id}]님의 셰어하우스</h4>
 						<ul>
 							<c:forEach var="shareHouse" items="${shareHouses }">
 								<c:if test="${shareHouse.writerId  eq provider.id }">
-									<li><a href="${ctx}/shareHouse/shareHouseDetail.do?shareHouseId=${shareHouse.shareHouseId }"> <span>${shareHouse.title }</span>
-											<span>${shareHouse.shareHouseDate }</span>
+									<li><a
+										href="${ctx}/shareHouse/shareHouseDetail.do?shareHouseId=${shareHouse.shareHouseId }">
+											<span>${shareHouse.title }</span> <span>${shareHouse.shareHouseDate }</span>
 									</a></li>
 								</c:if>
 							</c:forEach>
 						</ul>
-
+						<button type="button" name="userDeleteBtn">삭제</button>
 						<a href="${ctx}/adminFindMember.do?memberId=${provider.id}">[${provider.id}]님의
 							정보 더보기</a> <a href="${ctx }/removeMember.do?memberId=${provider.id }">
-							<button type="button" name="userDeleteBtn">삭제</button>
 						</a>
 					</div>
 				</div>

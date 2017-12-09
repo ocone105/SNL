@@ -42,8 +42,9 @@
 	<header id="header">
 		<%@ include file="/views/layout/header.jsp"%>
 
+
 		<div class="searchShareHouse">
-			<a href="${ctx}/shareHouse/shareHouseList.do">하우스 전체보기</a>
+			<a href="${ctx}/shareHouse/shareHouseList.do">하우스 찾아보기</a>
 			<form action="searchShareHouse.do" method="post">
 				<div class="shareHouseGender">
 					<label><input type="radio" name="shareHouseGender">성별
@@ -52,11 +53,13 @@
 						전용</label>
 				</div>
 				<div class="searchBar">
-					<input type="text" name = "searchWord" placeholder="지역명, 대학교, 지하철역을 입력해 주세요.">
-					<input type="submit" value="찾아보기">
+					<input type="text" name="searchWord"
+						placeholder="지역명, 대학교, 지하철역을 입력해 주세요."> <input
+						type="submit" value="찾아보기">
 				</div>
 			</form>
 		</div>
+		
 	</header>
 
 	<main>
@@ -64,29 +67,42 @@
 		<h3>추천 하우스</h3>
 		<p>단기간 내에 바로 입주 가능한 셰어하우스</p>
 		<ul class="shareHouseRecommend clear">
-	
+
 			<c:forEach var="shareHouse" items="${shareHouses }">
-				<li><a href="${ctx}/shareHouse/shareHouseDetail.do?shareHouseId=${shareHouse.shareHouseId}">
+				<li><a
+					href="${ctx}/shareHouse/shareHouseDetail.do?shareHouseId=${shareHouse.shareHouseId}">
 						<div>
-							<h4>${shareHouse.title}</h4>
-							<p>${shareHouse.rooms[0].sex}</p>
 							<div>
 								<img src="/images/${shareHouse.photos[0].photo}">
 							</div>
-						</div>
 							<div>
-									<span>${shareHouse.essentialInfo.buildingType}</span>
-									<c:if test="${houses ne null }">
-										<c:forEach var="house" items="${houses }">
-											<c:if test="${shareHouse.houseId  eq house.houseId }">
-												<span>${house.rooms}</span>
-												<span>${house.bathrooms}</span>
-											</c:if>
-										</c:forEach>
-										</c:if>
-										<p>${shareHouse.rooms[0].deposit }/
-											${shareHouse.rooms[0].monthlyFee }</p>
-								</div>
+								<h4>${shareHouse.title}</h4>
+								<c:choose>
+									<c:when test="${shareHouse.rooms[0].sex eq '여성 전용'}">
+										<p class="woman">여성전용</p>
+									</c:when>
+									<c:when test="${shareHouse.rooms[0].sex eq '남성 전용'}">
+										<p class="man">남성전용</p>
+									</c:when>
+									<c:otherwise>
+										<p class="unisex">성별 무관</p>
+									</c:otherwise>
+								</c:choose>
+							</div>
+						</div>
+						<div>
+							<span>${shareHouse.essentialInfo.buildingType}</span>
+							<c:if test="${houses ne null }">
+								<c:forEach var="house" items="${houses }">
+									<c:if test="${shareHouse.houseId  eq house.houseId }">
+										<span>${house.rooms}</span>
+										<span>${house.bathrooms}</span>
+									</c:if>
+								</c:forEach>
+							</c:if>
+							<p>${shareHouse.rooms[0].deposit }/
+								${shareHouse.rooms[0].monthlyFee }</p>
+						</div>
 				</a></li>
 			</c:forEach>
 		</ul>

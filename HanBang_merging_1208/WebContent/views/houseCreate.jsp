@@ -101,7 +101,7 @@
 					</script>
 				</div>
 				<input type="text" name="houseName" placeholder="하우스 이름"> <input
-					type="number" name="wholeArea" placeholder="전체 면적(m^2)"> <input
+					type="number" name="wholeArea" placeholder="전체 면적(㎡)"> <input
 					type="number" name="rooms" placeholder="룸 개수"> <input
 					type="number" name="bathrooms" placeholder="화장실 개수">
 

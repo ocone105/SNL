@@ -45,6 +45,49 @@
 </script>
 
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+   var bank;
+   var phone;
+   $(document).ready(function(){
+      $("#id").keyup(function () {
+    	  if ($("#id").val().length > 5) {
+    	  var inputId = $("#id").val();
+         
+         $.ajax({
+            type : 'POST',
+            url : 'checkId.do',
+            data : {
+               memberId : id
+            },
+            dataType : 'text',
+            success: function(data){
+               if(data == "success"){
+               $("#idCheckResult").html("사용가능한 ID입니다.")
+               } else{
+                  $("#idCheckResult").html("사용중인 ID입니다.")
+               }
+            },
+            error : function(e){
+               $("#idCheckResult").html("ID 조회 실패")
+               
+            }
+            
+         });
+			if ($("#id").val().length > 9) {
+				$("#idCheckResult").html("ID는 8자 이하입니다.");
+			}
+		} else if ($("#id").val().length < 5) {
+			$("#idCheckResult").html("ID는 5자 이상입니다.");
+		} else {
+			$("#idCheckResult").html("");
+		}
+      });
+
+</script>
+
+
 <script type="text/javascript">
 	function validate() {
 
@@ -144,7 +187,7 @@
 
 	<header id="header" class="memberJoinHeader">
 		<h1>
-			<a href="${ctx}/index.jsp">한방</a>
+			<a href="${ctx}/index.do">한방</a>
 		</h1>
 		<nav>
 			<h2 class="hide">회원 메뉴</h2>
