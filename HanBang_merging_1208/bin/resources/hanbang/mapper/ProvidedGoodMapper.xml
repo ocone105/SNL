@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hanbang.store.mapper.ProvidedGoodMapper">
+
+	<insert id="create" parameterType="ProvidedGood">
+		<selectKey keyProperty="providedGoodId" resultType="int"
+			order="BEFORE">
+			SELECT
+			providedGoodId_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO
+		providedGood_tb(providedGoodId, roomId, providedGood)
+		VALUES(#{providedGoodId}, #{roomId}, #{providedGood})
+	</insert>
+
+	<update id="update" parameterType="ProvidedGood">
+		UPDATE providedGood_tb
+		SET
+		providedGood =
+		#{providedGood}
+		WHERE roomId = #{roomId} AND
+		providedGoodId
+		=
+		#{providedGoodId}
+	</update>
+
+	<select id="retriveAll" parameterType="int" resultType="ProvidedGood">
+		SELECT
+		roomId, providedGoodId, providedGood
+		FROM
+		providedGood_tb
+		WHERE
+		roomId = #{roomId}
+	</select>
+
+
+
+	<select id="retrive" parameterType="int" resultType="ProvidedGood">
+		SELECT
+		roomId, providedGoodId, providedGood
+		FROM
+		providedGood_tb
+		WHERE
+		providedGoodId = #{providedGoodId}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM providedGood_tb
+		WHERE providedGoodId = #{providedGoodId}
+	</delete>
+
+	<delete id="deleteByRoom" parameterType="int">
+		DELETE FROM
+		providedGood_tb
+		WHERE roomId = #{roomId}
+	</delete>
+
+</mapper>

@@ -106,7 +106,7 @@
 							value="오피스텔"> <span>오피스텔</span>
 						</label>
 					</div>
-					<label>층/총층<input type="text" name="floorTotalFloor"></label>
+					<label>층/총층<input type="text" name="floorTotalFloor" placeholder="ex) 5/15"></label>
 					<div class="essentialInfo ea2 clear">
 						<label> <input type="checkbox" name="parking" value="가능">
 							<span>주차</span>
@@ -199,10 +199,10 @@
 					<div class="clear">
 						<div>
 							<label>룸 크기<input type="text" name="roomArea"></label> <label>화장실
-								유/무<input type="text" name="bathroom">
+								유/무<input type="text" name="bathroom" placeholder="유/무 만 입력">
 							</label> <label>보증금<input type="text" name="deposit"></label> <label>월세<input
 								type="text" name="monthlyFee"></label> <label>입주 가능 여부<input
-								type="text" name="availability"></label>
+								type="text" name="availability" placeholder="가능/불가 만 입력"></label>
 						</div>
 						<div class="roomOption clear">
 							<label> <input type="checkbox" name="providedGood"
@@ -225,7 +225,7 @@
 				</div>
 				<button type="button" name="roomCreateBtn" class="roomCreateBtn">추가하기</button>
 			</div>
-			<textarea rows="30" cols="100" placeholder="작성해주세요" name="content"></textarea>
+			<textarea rows="30" cols="70" placeholder="셰어하우스에 대해 작성해주세요 ^^" name="content"></textarea>
 			</div>
 			<div class="fileUpLoad">
 				<p>하우스를 대표하는 사진을 등록해주세요.</p>

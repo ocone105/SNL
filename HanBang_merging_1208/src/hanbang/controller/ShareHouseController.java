@@ -146,7 +146,7 @@ public class ShareHouseController {
 			}
 		}
 
-		return "redirect:/shareHouseDetail.do?shareHouseId=" + shareHouseId;
+		return "/shareHouse/shareHouseDetail.do?shareHouseId=" + shareHouseId;
 	}
 
 	@RequestMapping(value = "/shareHouse/shareHouseModify.do", method = RequestMethod.GET)

@@ -122,25 +122,26 @@
 				<h3>[${size}]개의 셰어하우스</h3>
 				<ul>
 					<c:forEach var="shareHouse" items="${shareHouses }">
-						<li><a
-							href="${ctx}/shareHouse/shareHouseDetail.do?shareHouseId=${shareHouse.shareHouseId}">
+						<li>
+							<a href="${ctx}/shareHouse/shareHouseDetail.do?shareHouseId=${shareHouse.shareHouseId}">
 								<div>
 									<div>
 										<img src="/images/${shareHouse.photos[0].photo}">
 									</div>
-									<h4>${shareHouse.title}</h4>
-
-									<c:choose>
-										<c:when test="${shareHouse.rooms[0].sex eq '여성 전용'}">
-											<p class="woman">여성전용</p>
-										</c:when>
-										<c:when test="${shareHouse.rooms[0].sex eq '남성 전용'}">
-											<p class="man">남성전용</p>
-										</c:when>
-										<c:otherwise>
-											<p class="unisex">성별 무관</p>
-										</c:otherwise>
-									</c:choose>
+									<div>
+										<h4>${shareHouse.title}</h4>
+										<c:choose>
+											<c:when test="${shareHouse.rooms[0].sex eq '여성 전용'}">
+												<p class="woman">여성전용</p>
+											</c:when>
+											<c:when test="${shareHouse.rooms[0].sex eq '남성 전용'}">
+												<p class="man">남성전용</p>
+											</c:when>
+											<c:otherwise>
+												<p class="unisex">성별 무관</p>
+											</c:otherwise>
+										</c:choose>
+									</div>
 								</div>
 								<div>
 									<span>${shareHouse.essentialInfo.buildingType}</span>
@@ -151,11 +152,11 @@
 												<span>${house.bathrooms}</span>
 											</c:if>
 										</c:forEach>
-										</c:if>
-										<p>${shareHouse.rooms[0].deposit }/
-											${shareHouse.rooms[0].monthlyFee }</p>
+									</c:if>
+									<p>${shareHouse.rooms[0].deposit } / ${shareHouse.rooms[0].monthlyFee }</p>
 								</div>
-						</a></li>
+							</a>
+						</li>
 					</c:forEach>
 				</ul>
 			</div>

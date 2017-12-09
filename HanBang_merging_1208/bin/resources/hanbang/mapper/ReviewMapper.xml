@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="hanbang.store.mapper.ReviewMapper">
+	
+	<resultMap type="Review" id="reviewMap">
+		<id property="date" column="reviewDate"/>
+		<result property="content" column="reviewContent"/>
+	</resultMap>
+	
+	<sql id="selectReview">
+		SELECT reviewId, writerId, reviewDate, title, photo, reviewContent
+		FROM review_tb
+	</sql>
+	
+	<insert id="create" parameterType="Review">
+		<selectKey keyProperty="reviewId" resultType="Integer" order="BEFORE">
+			SELECT reviewId_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO review_tb(reviewId, writerId, shareHouseId, reviewDate, title, photo, reviewContent)
+		VALUES(#{reviewId}, #{writerId}, #{shareHouseId}, sysdate, #{title}, #{photo, jdbcType= VARCHAR}, #{content})
+	</insert>
+	
+	<select id="retriveAll" parameterType="Integer" resultMap="reviewMap">
+		<include refid="selectReview"/>
+		WHERE shareHouseId = #{shareHouseId}
+	</select>
+	
+	<select id="retrive" parameterType="Integer" resultMap="reviewMap">
+		<include refid="selectReview"/>
+		WHERE reviewId = #{reviewId}
+	</select>
+	
+	<update id="update" parameterType="Review">
+		UPDATE review_tb
+		SET reviewDate = sysdate, title = #{title}, reviewContent = #{content}
+		WHERE reviewId = #{reviewId}
+	</update>
+	
+	<delete id="deleteByMemberId" parameterType="String">
+		DELETE FROM review_tb
+		WHERE writerId = #{writerId}
+	</delete>
+	
+	<delete id="deleteByReviewId" parameterType="Integer">
+		DELETE FROM review_tb
+		WHERE reviewId = #{reviewId}
+	</delete>
+	
+	<delete id="deleteByShareHouse" parameterType="Integer">
+		DELETE FROM review_tb
+		WHERE shareHouseId = #{shareHouseId}
+	</delete>
+	
+	<insert id="reviewReport" parameterType="map">
+		INSERT INTO reviewReport_tb(reporterId, reviewId)
+		VALUES(#{reporterId}, #{reviewId})
+	</insert>
+	
+</mapper>
+
+
