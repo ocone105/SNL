@@ -144,57 +144,104 @@ public class ShareHouseController {
 	@RequestMapping(value = "/shareHouse/shareHouseModify.do", method = RequestMethod.GET)
 	public String modifyShareHouse(String shareHouseId, Model model, HttpSession session) {
 
-		// System.out.println(shareHouseId);
-		//
-		// String memberId = (String) session.getAttribute("memberId");
-		// int id = Integer.parseInt(shareHouseId);
-		//
-		// System.out.println(id);
-		//
-		// ShareHouse shareHouse = shareHouseService.find(id);
-		//
-		// System.out.println(shareHouse.toString());
-		//
-		// EssentialInfo essentialInfo = essentialInfoService.find(id);
-		//
-		// System.out.println(essentialInfo.toString());
-		//
-		// List<Room> roomList = roomService.find(id);
-		//
-		// System.out.println(roomList.toString());
-		//
-		// List<Photo> photoList = shareHouse.getPhotos();
-		//
-		// System.out.println(photoList.toString());
-		//
-		// model.addAttribute("shareHouse", shareHouse);
-		// model.addAttribute("essentialInfo", essentialInfo);
-		// model.addAttribute("roomList", roomList);
-		// model.addAttribute("photoList", photoList);
-		return "redirect:/views/shareHouseModify.jsp";
+		String memberId = (String) session.getAttribute("memberId");
+		int id = Integer.parseInt(shareHouseId);
+		ShareHouse shareHouse = shareHouseService.find(id);
+		int houseId = shareHouse.getHouseId();
+		House house = houseService.find(houseId);
+		EssentialInfo essentialInfo = essentialInfoService.find(id);
+		List<Room> roomList = roomService.find(id);
+		List<Photo> photoList = shareHouse.getPhotos();
+		model.addAttribute("house", house);
+		model.addAttribute("shareHouse", shareHouse);
+		model.addAttribute("essentialInfo", essentialInfo);
+		model.addAttribute("roomList", roomList);
+		model.addAttribute("photoList", photoList);
+		return "/views/shareHouseModify.jsp";
 
 	}
 
 	@RequestMapping(value = "/shareHouse/shareHouseModify.do", method = RequestMethod.POST)
-	public String modifyShareHouse(ShareHouse shareHouse, EssentialInfo essentialInfo, ExtraInfo extraInfo, Room rooms,
-			House house, List<Photo> photos, HttpServletRequest request) {
-		boolean modified = shareHouseService.modify(shareHouse);
-		String[] publicUsage = request.getParameterValues("publicUsage");
-		List<String> publicUsages = new ArrayList<String>(Arrays.asList(publicUsage));
-		if (!modified) {
-			modified = essentialInfoService.modify(essentialInfo, publicUsages);
-			if (!modified) {
-				extraInfoService.modify(extraInfo);
-			} else {
-				System.out.println("필수정보 입력안함");
-				return "/shareHouseModify.do?shareHouseId=" + shareHouse.getShareHouseId();
-			}
+	public String modifyShareHouse(HttpSession session, String shareHouseId, String content, String title, ExtraInfo extraInfo,
+			String buildingType, String parking, String floorTotalFloor, String lift, Room room,
+			MultipartHttpServletRequest mhsq, HttpServletRequest request) throws IOException {
+		
+		/* shareHouse modify */
+		String memberId = (String) session.getAttribute("memberId");
+		int id = Integer.parseInt(shareHouseId);
+		ShareHouse shareHouse = shareHouseService.find(id);
+		shareHouse.setWriterId(memberId);
+		int houseId = Integer.parseInt(request.getParameter("houseId"));
+		shareHouse.setHouseId(houseId);
+		shareHouse.setContent(content);
+		shareHouse.setTitle(title);
+		shareHouseService.modify(shareHouse);
+
+		/* room create */
+		String[] provodedGood = request.getParameterValues("providedGood");
+		List<String> providedGoods = new ArrayList<String>(Arrays.asList(provodedGood));
+		String sex = request.getParameter("shareHouseGender");
+		room.setSex(sex);
+		room.setShareHouseId(id);
+		roomService.register(room, providedGoods);
+
+		/* extraInfo shareHouseId set */
+		if (extraInfo.getPet() == null) {
+			extraInfo.setPet("불가");
+		}
+		if (extraInfo.getSmoke() == null) {
+			extraInfo.setSmoke("불가");
+		}
+		extraInfo.setShareHouseId(id);
+		extraInfoService.register(extraInfo);
+
+		/* essentialInfo create */
+		EssentialInfo essentialInfo = new EssentialInfo();
+		essentialInfo.setBuildingType(buildingType);
+		essentialInfo.setFloorTotalFloor(floorTotalFloor);
+		if (parking == null) {
+			parking = "불가";
+			essentialInfo.setParking(parking);
 		} else {
-			System.out.println("shareHouseModify error");
-			return "shareHouseModify.do?shareHouseId=" + shareHouse.getShareHouseId();
+			essentialInfo.setParking(parking);
+		}
+		if (lift == null) {
+			lift = "없음";
+			essentialInfo.setLift(lift);
+		} else {
+			essentialInfo.setLift(lift);
+		}
+		String[] publicUsage = request.getParameterValues("publicUsage");
+		List<String> usages = new ArrayList<String>(Arrays.asList(publicUsage));
+		essentialInfo.setShareHouseId(id);
+		essentialInfoService.register(essentialInfo, usages);
+
+		/* photo create */
+		String realFolder = "c:/tempFiles/";
+		File dir = new File(realFolder);
+		if (!dir.isDirectory()) {
+			dir.mkdirs();
 		}
 
-		return "redirect:/shareHouseDetail.do?shareHouseId=" + shareHouse.getShareHouseId();
+		List<MultipartFile> mf = mhsq.getFiles("photos");
+		if (mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
+
+		} else {
+			for (int i = 0; i < mf.size(); i++) {
+				String genId = UUID.randomUUID().toString();
+				String originFileName = mf.get(i).getOriginalFilename();
+				String saveFileName = genId + "." + originFileName;
+
+				File saveFile = new File(dir.getAbsolutePath() + File.separator + saveFileName);
+				byte[] bytes = mf.get(i).getBytes();
+				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(saveFile));
+				out.write(bytes);
+				out.close();
+				shareHouseService.savePhoto(saveFileName, shareHouse.getShareHouseId());
+			}
+		}
+
+		return "/shareHouse/shareHouseDetail.do?shareHouseId=" + shareHouseId;
 	}
 
 	@RequestMapping(value = "/shareHouse/shareHouseDelete.do")

@@ -19,8 +19,9 @@
 		<h3>셰어하우스 수정</h3>
 		<form action="${ctx }/shareHouse/shareHouseModify.do" method="post"
 			class="shareHouseCreate" enctype="multipart/form-data">
-			<input type="text" name="title" placeholder="제목"
-				value=${shareHouse.title }>
+			<input type="hidden" name="shareHouseId"
+				value="${shareHouse.shareHouseId }"> <input type="text"
+				name="title" placeholder="제목" value=${shareHouse.title }>
 			<div>
 				<div class="houseInfo">
 					<h4>하우스</h4>
@@ -78,14 +79,16 @@
 						<div>
 							<input type="hidden" name="houseId" value="${house.houseId }">
 							<label>하우스 이름<input type="text" name="houseName"
-								value="${house.houseName }">
+								value="${house.houseName }" readonly="readonly">
 							</label><label>주소<input type="text" id="sample4_roadAddress"
-								name="address" value="${house.address }" placeholder="도로명주소"></label>
-							<label>전체 면적<input type="text" name="wholeArea"
-								value="${house.wholeArea }">
+								name="address" value="${house.address }" placeholder="도로명주소"
+								readonly="readonly"></label> <label>전체 면적<input
+								type="text" name="wholeArea" value="${house.wholeArea }"
+								readonly="readonly">
 							</label> <label>룸 개수<input type="number" name="roomEa"
-								value="${house.rooms }"></label> <label>화장실 개수<input
-								type="number" name="bathrooms" value="${house.bathrooms }">
+								value="${house.rooms }" readonly="readonly"></label> <label>화장실
+								개수<input type="number" name="bathrooms"
+								value="${house.bathrooms }" readonly="readonly">
 							</label>
 						</div>
 					</div>
@@ -197,30 +200,30 @@
 						<div class="ea3 clear">
 							<label> <input type="radio" name="shareHouseGender"
 								value="성별 무관"
-								<c:if test="${roomList.get[0].getSex() eq '성별무관' }">checked="checked"</c:if>>
+								<c:if test="${roomList[0].getSex() eq '성별 무관' }">checked="checked"</c:if>>
 								<span>성별 무관</span>
 							</label> <label> <input type="radio" name="shareHouseGender"
 								value="여성 전용"
-								<c:if test="${roomList.get[0].getSex() eq '여성전용' }">checked="checked"</c:if>>
+								<c:if test="${roomList[0].getSex() eq '여성 전용' }">checked="checked"</c:if>>
 								<span>여성 전용</span>
 							</label> <label> <input type="radio" name="shareHouseGender"
 								value="남성 전용"
-								<c:if test="${roomList.get[0].getSex() eq '남성전용' }">checked="checked"</c:if>>
+								<c:if test="${roomList[0].getSex() eq '남성 전용' }">checked="checked"</c:if>>
 								<span>남성 전용</span>
 							</label>
 						</div>
 						<div class="clear">
 							<div>
 								<label>룸 크기<input type="text" name="roomArea"
-									value=${roomList.get[0].getRoomArea() }></label> <label>화장실
+									value=${roomList[0].getRoomArea() }></label> <label>화장실
 									유/무<input type="text" name="bathroom"
-									value=${roomList.get[0].getBathroom() }>
+									value=${roomList[0].getBathroom() }>
 								</label> <label>보증금<input type="text" name="deposit"
-									value=${roomList.get[0].getDeposit() }></label> <label>월세<input
+									value=${roomList[0].getDeposit() }></label> <label>월세<input
 									type="text" name="monthlyFee"
-									value=${roomList.get[0].getMonthlyFee() }></label> <label>입주
+									value=${roomList[0].getMonthlyFee() }></label> <label>입주
 									가능 여부<input type="text" name="availability"
-									value=${roomList.get[0].getAvailability() }>
+									value=${roomList[0].getAvailability() }>
 								</label>
 							</div>
 							<div class="roomOption clear">
@@ -246,7 +249,7 @@
 				</div>
 				<textarea rows="30" cols="100" placeholder="작성해주세요" name="content">${shareHouse.content }</textarea>
 			</div>
-			 <div class="fileUpLoad">
+			<div class="fileUpLoad">
 				<p>하우스 대표 사진</p>
 				<label><input type="file" name="photos" multiple="multiple"></label>
 			</div>
