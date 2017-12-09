@@ -38,7 +38,6 @@
 <body>
 
 	<a href="#header" class="skip">본문바로가기</a>
-
 	<header id="header">
 		<%@ include file="/views/layout/header.jsp"%>
 
@@ -61,6 +60,7 @@
 		</div>
 		
 	</header>
+	
 
 	<main>
 	<section>
