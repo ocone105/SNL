@@ -41,8 +41,6 @@ public class QuestionController {
 		String memberId = (String) session.getAttribute("memberId");
 		Member member = memberService.find(memberId);
 		if (member.getMemberTypeId() == 1) {
-			return "redirect:questionList.do";
-		} else {
 			Question question = new Question();
 			question.setWriterId(memberId);
 			question.setShareHouseId(shareHouseId);
@@ -53,6 +51,8 @@ public class QuestionController {
 			if (!registed) {
 				return "redirect:/question/registQuestion.do";
 			}
+			return "redirect:questionList.do";
+		} else {
 			return "questionList.do";
 		}
 	}

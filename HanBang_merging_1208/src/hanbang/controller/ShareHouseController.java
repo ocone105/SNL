@@ -244,9 +244,9 @@ public class ShareHouseController {
 		List<Room> roomList = roomService.find(id);
 		List<Review> reviews = reviewService.findByShareHouseId(id);
 		House house = houseService.find(shareHouse.getHouseId());
+		List<Photo> photos = shareHouse.getPhotos();
 
-		System.out.println(roomList);
-
+		model.addAttribute("photoList", photos);
 		model.addAttribute("house", house);
 		model.addAttribute("shareHouse", shareHouse);
 		model.addAttribute("essentialInfo", essentialInfo);
