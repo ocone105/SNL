@@ -10,30 +10,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import hanbang.domain.Answer;
+import hanbang.domain.Member;
 import hanbang.service.AnswerService;
+import hanbang.service.MemberService;
 
 @Controller
 public class ReviewAnswerController {
 	
 	@Autowired
 	private AnswerService service;
+	@Autowired
+	private MemberService memberService;
 	
 	// 후기 댓글 등록
 	@RequestMapping(value="/review/registAnswer.do", method=RequestMethod.POST)
-	public String registAnswer(int reviewId, HttpSession session, HttpServletRequest request, Model model, String content) {
-		System.out.println("***reviewId : " + reviewId);
-		System.out.println("******content : " + content);
+	public String registAnswer(int reviewId, HttpSession session, Model model, String content) {
+		String memberId = (String)session.getAttribute("memberId");
+		Member member = memberService.find(memberId);
+		
 		Answer answer = new Answer();
-		answer.setTypeId(2);
-//		answer.setContent((String)request.getAttribute("content"));
-//		answer.setWriterId((String)session.getAttribute("loginedUser"));
+		answer.setTypeId(member.getMemberTypeId());
 		answer.setContent(content);
-		answer.setWriterId("sh");
+		answer.setWriterId(memberId);
 		answer.setQuesOrReviewId(reviewId);
 		boolean check = service.registerReview(answer);
 		if(check == false) {
 			return "redirect:detailReview.do?reviewId=" + reviewId;
 		} else {
+			model.addAttribute(answer);
 			return "redirect:detailReview.do?reviewId=" + reviewId;
 		}
 	}

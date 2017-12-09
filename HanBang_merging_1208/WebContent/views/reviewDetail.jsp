@@ -25,10 +25,13 @@
 					<p>작성자 : ${review.writerId}</p>
 				</div>
 				<img
-					src="C:/Users/kosta/git/Final/HanBang/WebContent/uploadFile/${review.photo}"
+					src="/HanBang/uploadFile/${review.photo}"
 					alt="">
 				<p>사진 : ${review.photo }</p>
 				<p>** 후기내용 : ${review.content}</p>
+				<br>
+				<a href="modifyReview.do?reviewId=${review.reviewId }">후기수정</a>
+				<br>
 				<a href="removeReview.do?reviewId=${review.reviewId }">후기삭제</a>
 				<br>
 				<a href="reportReview.do?reviewId=${review.reviewId }">!후기신고!</a>

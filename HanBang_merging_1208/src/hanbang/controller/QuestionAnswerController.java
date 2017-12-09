@@ -1,6 +1,5 @@
 package hanbang.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,46 +9,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import hanbang.domain.Answer;
+import hanbang.domain.Member;
 import hanbang.service.AnswerService;
+import hanbang.service.MemberService;
 
 @Controller
 public class QuestionAnswerController {
-	
+
 	@Autowired
 	private AnswerService service;
-	
+	@Autowired
+	private MemberService memberService;
+
 	// 문의 댓글 등록
-	@RequestMapping(value="/question/registAnswer.do", method=RequestMethod.POST)
-	public String registAnswer(String content, int questionId, HttpSession session, HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/question/registAnswer.do", method = RequestMethod.POST)
+	public String registAnswer(String content, int questionId, HttpSession session, Model model) {
+		String memberId = (String) session.getAttribute("memberId");
+		Member member = memberService.find(memberId);
+
 		Answer answer = new Answer();
-//		answer.setWriterId((String)session.getAttribute("loginedUser"));
-//		answer.setContent((String)request.getAttribute("content"));
-		answer.setWriterId("sh");
+		answer.setWriterId(memberId);
 		answer.setContent(content);
 		answer.setQuesOrReviewId(questionId);
-		answer.setTypeId(1);
+		answer.setTypeId(member.getMemberTypeId());
 		boolean check = service.registerQuestion(answer);
-		if(check == false) {
+		if (check == false) {
 			return "redirect:detailQuestion.do?questionId=" + questionId;
 		} else {
+			model.addAttribute(answer);
 			return "redirect:detailQuestion.do?questionId=" + questionId;
 		}
 	}
-	
-	//문의 댓글 수정
-	
-	
-	
-	//문의 댓글 삭제
-	@RequestMapping(value="/question/removeAnswer.do", method=RequestMethod.GET)
-	public String removeAnswer(int answerId, int questionId) {
-		boolean check = service.removeByQuesAnswerId(answerId);
-		if(check == true) {
-			return "detailQuestion.do?questionId=" + questionId;
+
+	// 문의 댓글 삭제
+	@RequestMapping(value = "/question/removeAnswer.do", method = RequestMethod.GET)
+	public String removeAnswer(int answerId, int questionId, HttpSession session) {
+		String memberId = (String) session.getAttribute("memberId");
+		Answer answer = service.findQuestionAnswerById(answerId);
+
+		if (answer.getWriterId().equals(memberId)) {
+			boolean check = service.removeByQuesAnswerId(answerId);
+			if (check == true) {
+				return "detailQuestion.do?questionId=" + questionId;
+			} else {
+				return "detailQuestion.do?questionId=" + questionId;
+			}
 		} else {
-			return "detailQuestion.do?questionId=" + questionId;
+			return "redirect:/detailQuestion.do?questionId=" + questionId;
 		}
 	}
-	
-	
+
 }

@@ -2,7 +2,6 @@ package hanbang.service;
 
 import java.util.List;
 
-import hanbang.domain.Paging;
 import hanbang.domain.Question;
 
 public interface QuestionService {
@@ -20,9 +19,5 @@ public interface QuestionService {
 	boolean remove(int questionID);
 
 	boolean removeByShareHouse(int shareHouseId);
-	
-	List<Paging> paging(Paging paging);
-	
-	int totalPaging();
 
 }

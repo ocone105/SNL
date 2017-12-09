@@ -6,17 +6,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Repository;
 
-import hanbang.domain.Paging;
 import hanbang.domain.Question;
 import hanbang.store.QuestionStore;
 import hanbang.store.factory.SqlSessionFactoryProvider;
 import hanbang.store.mapper.QuestionMapper;
 
 @Repository
-public class QuestionStoreLogic implements QuestionStore {
-
+public class QuestionStoreLogic implements QuestionStore{
+	
 	private SqlSessionFactory factory;
-
+	
 	public QuestionStoreLogic() {
 		factory = SqlSessionFactoryProvider.getSqlSessionFactory();
 	}
@@ -25,7 +24,7 @@ public class QuestionStoreLogic implements QuestionStore {
 	public int create(Question question) {
 		SqlSession session = factory.openSession();
 		int check = 0;
-
+		
 		try {
 			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
 			check = mapper.create(question);
@@ -33,7 +32,7 @@ public class QuestionStoreLogic implements QuestionStore {
 		} finally {
 			session.close();
 		}
-
+		
 		return check;
 	}
 
@@ -41,14 +40,14 @@ public class QuestionStoreLogic implements QuestionStore {
 	public List<Question> retriveByMemberId(String memberId) {
 		SqlSession session = factory.openSession();
 		List<Question> list = null;
-
+		
 		try {
 			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
 			list = mapper.retriveByMemberId(memberId);
 		} finally {
 			session.close();
 		}
-
+		
 		return list;
 	}
 
@@ -56,14 +55,14 @@ public class QuestionStoreLogic implements QuestionStore {
 	public List<Question> retriveByShareHouseId(int shareHouseId) {
 		SqlSession session = factory.openSession();
 		List<Question> list = null;
-
+		
 		try {
 			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
 			list = mapper.retriveByShareHouseId(shareHouseId);
 		} finally {
 			session.close();
 		}
-
+		
 		return list;
 	}
 
@@ -71,14 +70,14 @@ public class QuestionStoreLogic implements QuestionStore {
 	public Question retrive(int questionId) {
 		SqlSession session = factory.openSession();
 		Question question = null;
-
+		
 		try {
 			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
 			question = mapper.retrive(questionId);
 		} finally {
 			session.close();
 		}
-
+		
 		return question;
 	}
 
@@ -86,7 +85,7 @@ public class QuestionStoreLogic implements QuestionStore {
 	public int update(Question question) {
 		SqlSession session = factory.openSession();
 		int check = 0;
-
+		
 		try {
 			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
 			check = mapper.update(question);
@@ -94,7 +93,7 @@ public class QuestionStoreLogic implements QuestionStore {
 		} finally {
 			session.close();
 		}
-
+		
 		return check;
 	}
 
@@ -102,7 +101,7 @@ public class QuestionStoreLogic implements QuestionStore {
 	public int delete(int questionId) {
 		SqlSession session = factory.openSession();
 		int check = 0;
-
+		
 		try {
 			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
 			check = mapper.delete(questionId);
@@ -110,7 +109,7 @@ public class QuestionStoreLogic implements QuestionStore {
 		} finally {
 			session.close();
 		}
-
+		
 		return check;
 	}
 
@@ -118,7 +117,7 @@ public class QuestionStoreLogic implements QuestionStore {
 	public int deleteByMemberId(String memberId) {
 		SqlSession session = factory.openSession();
 		int check = 0;
-
+		
 		try {
 			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
 			check = mapper.deleteByMemberId(memberId);
@@ -126,7 +125,7 @@ public class QuestionStoreLogic implements QuestionStore {
 		} finally {
 			session.close();
 		}
-
+		
 		return check;
 	}
 
@@ -134,7 +133,7 @@ public class QuestionStoreLogic implements QuestionStore {
 	public int deleteByShareHouse(int shareHouseId) {
 		SqlSession session = factory.openSession();
 		int check = 0;
-
+		
 		try {
 			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
 			check = mapper.deleteByShareHouse(shareHouseId);
@@ -142,34 +141,8 @@ public class QuestionStoreLogic implements QuestionStore {
 		} finally {
 			session.close();
 		}
-
+		
 		return check;
-	}
-
-	@Override
-	public List<Paging> selectPaging(Paging paging) {
-		SqlSession session = factory.openSession();
-		List<Paging> list = null;
-		try {
-			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
-			list = mapper.selectPaging(paging);
-		} finally {
-			session.close();
-		}
-		return list;
-	}
-
-	@Override
-	public int selectTotalPaging() {
-		SqlSession session = factory.openSession();
-		int totalPages = 0;
-		try {
-			QuestionMapper mapper = session.getMapper(QuestionMapper.class);
-			totalPages = mapper.selectTotalPaging();
-		} finally {
-			session.close();
-		}
-		return totalPages;
 	}
 
 }
