@@ -15,22 +15,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import hanbang.domain.EssentialInfo;
 import hanbang.domain.ExtraInfo;
-import hanbang.domain.Facilitie;
 import hanbang.domain.House;
-import hanbang.domain.Member;
 import hanbang.domain.Photo;
-import hanbang.domain.ProvidedGood;
-import hanbang.domain.PublicUsage;
 import hanbang.domain.Review;
 import hanbang.domain.Room;
 import hanbang.domain.ShareHouse;
@@ -43,7 +36,6 @@ import hanbang.service.ShareHouseService;
 
 @Controller
 public class ShareHouseController {
-
 	@Autowired
 	private HouseService houseService;
 	@Autowired
