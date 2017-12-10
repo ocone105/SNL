@@ -18,8 +18,8 @@
 	<section>
 		<h3>사업자</h3>
 		<div class="listHead">
-			<span>사업자 ID </span> <span> 셰어하우스 갯수 / 신고 횟수</span> <span> 자동
-				삭제 셰어하우스 횟수</span> <span> 삭제</span>
+			<span>사업자 ID </span> <span> 셰어하우스 갯수 </span> <span> 
+				</span> <span> 삭제</span>
 		</div>
 		<div class="detail">
 

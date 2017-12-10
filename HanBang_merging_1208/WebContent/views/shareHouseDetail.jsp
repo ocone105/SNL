@@ -26,7 +26,6 @@
 				</c:forEach>
 			</div>
 			<div class="pagination"></div>
-			<button type="button" name="reportBtn" class="reportBtn">신고</button>
 			<script>
 				var mySwiper = new Swiper('.swiper-container', {
 					pagination : '.pagination',

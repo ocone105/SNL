@@ -18,8 +18,7 @@
 	<section>
 		<h3>일반 회원</h3>
 		<div class="listHead">
-			<span>일반 회원 ID</span> <span> 후기 갯수 / 신고 횟수</span> <span> 자동 삭제
-				후기 횟수</span>
+			<span>일반 회원 ID</span> <span> 후기 갯수 / 신고 횟수</span> <span> </span>
 		</div>
 		<div class="detail">
 			<c:forEach var="user" items="${members }">
