@@ -47,14 +47,16 @@
 		<div class="shareHouseTitle">
 			<h3>${shareHouse.title}</h3>
 			<div>
-				<button type="button" name="interestShareHouseCreateBtn"
-					class="interestShareHouseCreateBtnOn" title="관심하우스 등록">
-					<span class="hide">등록</span>
-				</button>
-				<button type="button" name="interestShareHouseCreateBtn"
-					class="interestShareHouseCreateBtnOff" title="관심하우스 등록">
-					<span class="hide">삭제</span>
-				</button>
+				<c:if test="${memberType  eq '1'}">
+					<a
+						href="${ctx}/registInterstHouse.do?shareHouseId=${shareHouse.shareHouseId}">
+						<button type="button" name="interestShareHouseCreateBtn"
+							class="interestShareHouseCreateBtnOn" title="관심하우스 등록">
+							<span class="hide">등록</span>
+						</button>
+					</a>
+				</c:if>
+
 			</div>
 			<c:choose>
 				<c:when test="${roomList[0].sex eq '여성 전용'}">
@@ -136,7 +138,7 @@
 		<div>
 			<h4>후기</h4>
 			<div class="listHead">
-				<span>셰어하우스 제목</span> <span>후기 작성 날짜</span> <span>작성자</span>
+				<span>제목</span> <span>작성자</span> <span>작성 일자</span>
 			</div>
 			<ul id="reviewList" class="questionList">
 				<c:if test="${reviews ne null }">
@@ -196,9 +198,11 @@
 						}
 					});
 		</script>
-		<a
-			href="${ctx}/question/registQuestion.do?shareHouseId=${shareHouse.shareHouseId }">하우스
-			방문 문의</a>
+		<c:if test="${memberType  eq '1'}">
+			<a
+				href="${ctx}/question/registQuestion.do?shareHouseId=${shareHouse.shareHouseId }">하우스
+				방문 문의</a>
+		</c:if>
 	</aside>
 	</main>
 	<%@ include file="/views/layout/footer.jsp"%>

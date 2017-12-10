@@ -40,34 +40,38 @@ public class ReviewController {
 	// 후기 등록
 	@RequestMapping("/review/registReview.do")
 	public String registerReview(Model model, String shareHouseId) {
-		
+
 		int id = Integer.parseInt(shareHouseId);
 		ShareHouse shareHouse = shareHouseService.find(id);
 
 		model.addAttribute("shareHouse", shareHouse);
-		
+
 		return "/views/reviewCreate.jsp";
 	}
 
 	//
 	@RequestMapping(value = "/review/registReview.do", method = RequestMethod.POST)
-	public String uploadFile(@RequestParam("file") MultipartFile imgFile, Model model, Review review, HttpSession session) {
+	public String uploadFile(@RequestParam("file") MultipartFile imgFile, Model model, Review review,
+			HttpSession session, int shareHouseId) {
 
-		
-		String memberId = (String)session.getAttribute("memberId");
+		String memberId = (String) session.getAttribute("memberId");
 		Member member = memberService.find(memberId);
-		
+
+		String rename = null;
+		String fullPath = null;
 		String savePath = "C:/Users/limsuhyun/git/HanBang/HanBang/WebContent/uploadFile";
 		String originalFilename = imgFile.getOriginalFilename() + ""; // fileName.jpg
-		String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
-		String extension = originalFilename.substring(originalFilename.indexOf("."));
-
-		String rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
-		String fullPath = savePath + "\\" + rename;
+		if (!originalFilename.isEmpty()) {
+			String onlyFileName = originalFilename.substring(0, originalFilename.indexOf(".")); // fileName
+			String extension = originalFilename.substring(originalFilename.indexOf("."));
+			rename = onlyFileName + "_" + getCurrentDayTime() + extension; // fileName_20150721-14-07-50.jpg
+			fullPath = savePath + "\\" + rename;
+		}
 
 		review.setWriterId(memberId);
 		review.setShareHouseId(member.getMemberTypeId());
 		review.setPhoto(rename);
+		review.setShareHouseId(shareHouseId);
 
 		service.register(review);
 		model.addAttribute(review);
@@ -89,7 +93,6 @@ public class ReviewController {
 		int reviewId = review.getReviewId();
 		return "redirect:detailReview.do?reviewId=" + reviewId;
 	}
-
 
 	// 시간정보
 	public String getCurrentDayTime() {
@@ -160,10 +163,10 @@ public class ReviewController {
 	// 후기 삭제(memberId)
 	@RequestMapping("/review/removeReviewByMemberId.do")
 	public String removeReviewByMemberId(int reviewId, HttpSession session) {
-		String memberId = (String)session.getAttribute("memberId");
+		String memberId = (String) session.getAttribute("memberId");
 		Review review = service.find(reviewId);
-		
-		if(review.getWriterId().equals(memberId)) {
+
+		if (review.getWriterId().equals(memberId)) {
 			boolean check = service.removeByMemberId(memberId);
 			if (check == false) {
 				return "redirect:reviewDetail.do";
@@ -192,7 +195,7 @@ public class ReviewController {
 	@RequestMapping("/review/reportReview.do")
 	public String reportReview(HttpSession session, int reviewId) {
 		// String memberId = (String) session.getAttribute("loginedUser");
-		String memberId = "rr"; 
+		String memberId = "rr";
 
 		try {
 			boolean check = service.reportReview(memberId, reviewId);

@@ -306,14 +306,20 @@ public class ShareHouseController {
 	}
 
 	@RequestMapping(value = "/index.do", method = RequestMethod.GET)
-	public String index(Model model) {
+	   public String index(Model model) {
 
-		List<ShareHouse> shareHouses = shareHouseService.findAll();
-		List<House> houses = houseService.findAll();
-
-		model.addAttribute("shareHouses", shareHouses);
-		model.addAttribute("house", houses);
-		return "index.jsp";
-	}
+	      List<ShareHouse> shareHouses = shareHouseService.findAll();
+	      List<House> houses = houseService.findAll();
+	      
+	      List<ShareHouse> available = new ArrayList<>();
+	      for(ShareHouse s : shareHouses) {
+	         if(s.getRooms().get(0).getAvailability().equals("가능")) {
+	            available.add(s);
+	         }
+	      }
+	      model.addAttribute("shareHouses", available);
+	      model.addAttribute("house", houses);
+	      return "index.jsp";
+	   }
 
 }

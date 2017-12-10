@@ -45,8 +45,9 @@
 			<form action="${ctx}/question/registAnswer.do" method="post">
 				<textarea rows="20" cols="50" name="content"></textarea>
 				<input type="hidden" name="questionId"
-					value="${question.questionId}" /> <input type="submit" value="등록">
-				<input type="button" value="취소">
+					value="${question.questionId}" /> <input type="hidden"
+					name="typeId" value="${answer.typeId }"> <input
+					type="submit" value="등록"> <input type="button" value="취소">
 			</form>
 		</div>
 	</section>

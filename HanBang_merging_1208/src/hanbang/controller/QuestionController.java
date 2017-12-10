@@ -1,5 +1,6 @@
 package hanbang.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -91,21 +92,12 @@ public class QuestionController {
 		} else if (member.getMemberTypeId() == 2) {
 			// 사업자일 경우
 			List<ShareHouse> shareHouses = shareHouseService.findByMemberId(memberId);
-			List<Question> questionList = null;
-			// try {
-			for (int i = 1; i < shareHouses.size(); i++) {
-				questionList = service.findByShareHouseId(shareHouses.get(i).getShareHouseId());
-				System.out.println(questionList);
+			List<Question> questionList = new ArrayList<>();
+			for (int i = 0; i < shareHouses.size(); i++) {
+				questionList.addAll(service.findByShareHouseId(shareHouses.get(i).getShareHouseId()));
 			}
-			Paging paging = new Paging();
-			paging.setPageNo(1);
-			paging.setPageSize(10);
-			paging.setTotalCount(questionList.size());
-			// } catch (Exception e) {
-			// e.printStackTrace();
-			// return "/views/questionList.jsp";
-			// }
-			model.addAttribute("qeustionList", questionList);
+
+			model.addAttribute("questionList", questionList);
 			return "/views/questionList.jsp";
 		} else {
 			// admin인 경우

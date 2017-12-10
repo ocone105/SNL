@@ -17,32 +17,41 @@
 	<main>
 	<section>
 		<h3>문의 내역</h3>
-		<ul>
+		<c:if test="${memberType eq '2' }">
+			<ul>
+				<c:forEach items="${questionList}" var="question">
+					<div class="listHead">
+						<span>작성자</span> <span>연락처</span> <span>문의 날짜</span>
+					</div>
+					<ul class="questionList">
+						<li><a
+							href="detailQuestion.do?questionId=${question.questionId }">
+								<span>${question.writerId}</span> <span>${question.phoneNumber}</span>
+								<span>${question.questionDate}</span>
+						</a></li>
+					</ul>
+				</c:forEach>
+			</ul>
+		</c:if>
+
+		<c:if test="${memberType eq '1'}">
 			<c:forEach items="${questionList}" var="question">
-				<li>
-				<br>
-					<div>
-						<span> 연락처 : ${question.phoneNumber}</span> <span> 문의날짜 : ${question.questionDate}</span>
-						<span> 작성자 : ${question.writerId}</span>
-					</div>
-					<div>
-						<div>
-							<p> 방문 가능 날짜 : ${question.schedule}</p>
-							<span><a
-								href="detailQuestion.do?questionId=${question.questionId }">
-									문의id : ${question.questionId }</a></span>
-						</div>
-						<div>
-							<article>
-								<p><a href="detailQuestion.do?questionId=${question.questionId }"> * 문의내용 : ${question.questionContent}</a></p>
-								<p><a href="removeQuestion.do?questionId=${question.questionId }">문의삭제</a></p>
-								<p><a href="${ctx }/review/registReview.do?shareHouseId=${question.shareHouseId }">후기 등록</a></p>
-							</article>
-						</div>
-					</div>
-				</li>
+				<div class="listHead">
+					<span>문의 날짜</span> <span>문의 내용</span> <span></span> <span></span>
+				</div>
+				<ul class="questionList">
+					<li><a
+						href="detailQuestion.do?questionId=${question.questionId }"> <span>${question.questionDate}</span>
+							<span>${question.questionContent}</span> <span>
+								<button type="button"
+									onclick="window.open('${ctx}/views/reviewCreate.jsp')"
+									class="reviewWriteBtn">후기작성</button>
+						</span>
+					</a></li>
+				</ul>
 			</c:forEach>
-		</ul>
+		</c:if>
+
 	</section>
 	</main>
 
