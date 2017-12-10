@@ -42,10 +42,9 @@
 				<ul class="questionList">
 					<li><a
 						href="detailQuestion.do?questionId=${question.questionId }"> <span>${question.questionDate}</span>
-							<span>${question.questionContent}</span> <span>
-								<button type="button"
-									onclick="window.open('${ctx}/views/reviewCreate.jsp')"
-									class="reviewWriteBtn">후기작성</button>
+							<span>${question.questionContent}</span> <span> <a
+								href="${ctx }/review/registReview.do?shareHouseId=${question.shareHouseId }"><button
+										type="button" class="reviewWriteBtn">후기작성</button></a>
 						</span>
 					</a></li>
 				</ul>

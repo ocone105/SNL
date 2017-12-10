@@ -19,6 +19,8 @@
 		<h3>후기 등록</h3>
 		<form action="${ctx}/review/registReview.do" method="post"
 			enctype="multipart/form-data">
+			<input type="hidden" name="shareHouseId"
+				value="${shareHouse.shareHouseId }">
 			<div>
 				<input type="text" name="title" placeholder="제목">
 				<textarea rows="30" cols="100" name="content"></textarea>

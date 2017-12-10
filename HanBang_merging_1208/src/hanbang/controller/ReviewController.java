@@ -52,10 +52,12 @@ public class ReviewController {
 	//
 	@RequestMapping(value = "/review/registReview.do", method = RequestMethod.POST)
 	public String uploadFile(@RequestParam("file") MultipartFile imgFile, Model model, Review review,
-			HttpSession session, int shareHouseId) {
+			HttpSession session, String shareHouseId) {
 
 		String memberId = (String) session.getAttribute("memberId");
 		Member member = memberService.find(memberId);
+
+		int id = Integer.parseInt(shareHouseId);
 
 		String rename = null;
 		String fullPath = null;
@@ -71,7 +73,7 @@ public class ReviewController {
 		review.setWriterId(memberId);
 		review.setShareHouseId(member.getMemberTypeId());
 		review.setPhoto(rename);
-		review.setShareHouseId(shareHouseId);
+		review.setShareHouseId(id);
 
 		service.register(review);
 		model.addAttribute(review);
